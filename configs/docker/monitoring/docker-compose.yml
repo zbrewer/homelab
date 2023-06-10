@@ -1,0 +1,30 @@
+version: "3.9"
+
+# Stack for time-series based monitoring. Namely, Grafana and backing data stores.
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - 8086:8086
+    volumes:
+      - $BASE_DIR/influxdb/config.yml:/etc/influxdb2/config.yml
+      - influxdb-data:/var/lib/influxdb2
+  grafana:
+    image: grafana/grafana-enterprise
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    container_name: grafana
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    depends_on:
+      - influxdb
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel
+
+volumes:
+  grafana-storage:
+  influxdb-data:
