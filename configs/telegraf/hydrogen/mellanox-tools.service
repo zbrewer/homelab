@@ -1,0 +1,9 @@
+[Unit]
+Description=Oneshot service to start mellanox tools on boot
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "mst start"
+
+[Install]
+WantedBy=multi-user.target
