@@ -1,0 +1,94 @@
+*.brew.foo {
+        tls {
+                dns cloudflare <api-key>
+                resolvers 1.1.1.1
+        }
+
+
+        # Network proxmox management UI
+        @hydrogen host hydrogen.brew.foo
+        handle @hydrogen {
+                reverse_proxy https://10.0.10.10:8006 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+        
+        # Lithium proxmox node
+        @lithium host lithium.brew.foo
+        handle @lithium {
+                reverse_proxy https://10.0.10.30:8006 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
+        # Truenas
+        @truenas host truenas.brew.foo
+        handle @truenas {
+                reverse_proxy https://10.0.20.10 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+        
+        # Unifi controller web UI
+        @unifi host unifi.brew.foo
+        handle @unifi {
+                reverse_proxy https://10.0.99.3:8443 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+
+                }
+        }
+
+        # Code server
+        @codeserver host codeserver.brew.foo
+        handle @codeserver {
+                reverse_proxy 10.0.10.32:8080
+        }
+
+        # Jekyll server running on codeserver
+        @jekyll host jekyll.brew.foo
+        handle @jekyll {
+                reverse_proxy 10.0.10.32:4000
+        }
+
+        # Pihole admin
+        @pihole host pihole.brew.foo
+        handle @pihole {
+                redir / /admin{uri}
+                reverse_proxy 10.0.10.11
+        }
+        
+        # Portainer
+        @portainer host portainer.brew.foo
+        handle @portainer {
+                reverse_proxy https://10.0.10.31:9443 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
+        # Grafana
+        @grafana host grafana.brew.foo
+        handle @grafana {
+                reverse_proxy 10.0.10.31:3000
+        }
+
+        # InfluxDB
+        @influxdb host influxdb.brew.foo
+        handle @influxdb {
+                reverse_proxy 10.0.10.31:8086
+        }
+}
