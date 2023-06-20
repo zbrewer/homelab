@@ -1,3 +1,4 @@
+# Place this file at ~/.ssh/config in order to support SSH access to the ICX-7250 switch.
 Host 10.0.99.2
         Ciphers 3des-cbc
         KexAlgorithms +diffie-hellman-group1-sha1
