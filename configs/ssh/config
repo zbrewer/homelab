@@ -1,0 +1,5 @@
+Host 10.0.99.2
+        Ciphers 3des-cbc
+        KexAlgorithms +diffie-hellman-group1-sha1
+        PubkeyAcceptedAlgorithms +ssh-rsa
+        HostkeyAlgorithms +ssh-rsa
