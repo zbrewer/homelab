@@ -91,4 +91,10 @@
         handle @influxdb {
                 reverse_proxy 10.0.10.31:8086
         }
+
+        # Tautulli
+        @tautulli host tautulli.brew.foo
+        handle @tautulli {
+                reverse_proxy 10.0.10.31:8181
+        }
 }
