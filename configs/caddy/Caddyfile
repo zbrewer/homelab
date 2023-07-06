@@ -97,4 +97,11 @@
         handle @tautulli {
                 reverse_proxy 10.0.10.31:8181
         }
+
+        # Guacamole
+        @guacamole host guacamole.brew.foo
+        handle @guacamole {
+                redir / /guacamole{uri}
+                reverse_proxy 10.0.10.31:8080
+        }
 }
