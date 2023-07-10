@@ -104,4 +104,15 @@
                 redir / /guacamole{uri}
                 reverse_proxy 10.0.10.31:8080
         }
+
+        # Firefox
+        @firefox host firefox.brew.foo
+        handle @firefox {
+                reverse_proxy https://10.0.100.5:5800 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
 }
