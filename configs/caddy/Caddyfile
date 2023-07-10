@@ -115,4 +115,10 @@
                         }
                 }
         }
+
+        # UpSnap
+        @wol host wol.brew.foo
+        handle @wol {
+                reverse_proxy 10.0.100.5:8090
+        }
 }
