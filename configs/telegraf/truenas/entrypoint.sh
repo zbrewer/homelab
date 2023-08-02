@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt update
-apt install -y sudo smartmontools nvme-cli
+apt install -y sudo smartmontools nvme-cli rrdtool
 
 echo "telegraf ALL=NOPASSWD:/usr/sbin/smartctl" >> /etc/sudoers
 echo "telegraf ALL = NOPASSWD: /mnt/zfs_libs/zpool_influxdb" >> /etc/sudoers
