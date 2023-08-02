@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # influx measurement name. I used "net" so stats show up in the same place as other Telegraf-collected data. 
 measurementName="net"
 # host tag for influx measurement. Set to your hostname. 
