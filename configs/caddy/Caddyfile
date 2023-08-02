@@ -121,4 +121,15 @@
         handle @wol {
                 reverse_proxy 10.0.100.5:8090
         }
+
+        # Authentik
+        @authentik host authentik.brew.foo
+        handle @authentik {
+                reverse_proxy https://10.0.10.31:9001 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
 }
