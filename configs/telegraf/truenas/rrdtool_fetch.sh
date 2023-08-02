@@ -8,7 +8,7 @@ host="truenas"
 # Host path in Telegraf Docker container to localhost rrd directory
 # This is /var/db/collectd/rrd (follow symlink to real location) on the TrueNAS host
 # Browse to /host/var/db/system, dig into the rrd-*** folder, then localhost, then look for interfaces. 
-path="/hostfs/var/db/system/rrd-1e6cbdfb415748b98d868947a6e14a88/localhost"
+path="/hostfs/rrd"
 
 # Array of interfaces 
 # example for multiples: interfaces=("interface-enp4s0" "interface-enp7s0")
