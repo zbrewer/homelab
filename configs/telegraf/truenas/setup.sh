@@ -31,3 +31,6 @@ ln -s /proc $current_dir/proc
 ln -s /sys $current_dir/sys
 ln -s /var $current_dir/var
 ln -s /run $current_dir/run
+
+# Change the following to point to the correct rrd directory
+ls -s /var/db/system/rrd-1e6cbdfb415748b98d868947a6e14a88/localhost $current_dir/rrd
