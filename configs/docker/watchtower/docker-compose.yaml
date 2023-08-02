@@ -7,3 +7,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=America/Denver
+    restart: always
