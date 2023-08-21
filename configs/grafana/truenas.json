@@ -95,7 +95,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -151,7 +151,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -207,7 +207,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -266,7 +266,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -334,7 +334,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -390,7 +390,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -458,7 +458,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -556,7 +556,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.2",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -1193,7 +1193,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1327,11 +1328,13 @@
           },
           "displayName": "${__field.name}",
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1339,7 +1342,7 @@
               }
             ]
           },
-          "unit": "Hits"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -1411,6 +1414,29 @@
         }
       ],
       "title": "ARC Ratio",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {}
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "hit_ratio",
+            "binary": {
+              "left": "arcstats_hits {host=\"truenas\", name=\"zfs\", pools=\"boot-pool::tank\"}",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "Total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1459,7 +1485,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1595,7 +1622,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1712,6 +1740,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 32,
+  "version": 33,
   "weekStart": ""
 }
