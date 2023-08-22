@@ -132,4 +132,10 @@
                         }
                 }
         }
+
+        # Eaton Network Card-MS on 5PX2200RT
+        @eaton host eaton.brew.foo
+        handle @eaton {
+                reverse_proxy 10.0.10.30
+        }
 }
