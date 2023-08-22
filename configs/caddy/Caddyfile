@@ -16,10 +16,10 @@
                 }
         }
         
-        # Lithium proxmox node
-        @lithium host lithium.brew.foo
-        handle @lithium {
-                reverse_proxy https://10.0.10.30:8006 {
+        # Helium proxmox node
+        @helium host helium.brew.foo
+        handle @helium {
+                reverse_proxy https://10.0.10.20:8006 {
                         transport http {
                                 tls
                                 tls_insecure_skip_verify
