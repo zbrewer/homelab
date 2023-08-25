@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  telegraf-eaton-server-room:
+    image: telegraf
+    container_name: telegraf-eaton-server-room
+    restart: always
+    environment:
+      - INFLUX_TOKEN=${EATON_SERVER_ROOM_INFLUX_TOKEN}
+      - SNMP_PASSWORD=${EATON_SERVER_ROOM_SNMP_PASSWORD}
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
