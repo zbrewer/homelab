@@ -8,4 +8,15 @@ services:
       - INFLUX_TOKEN=${EATON_SERVER_ROOM_INFLUX_TOKEN}
       - SNMP_PASSWORD=${EATON_SERVER_ROOM_SNMP_PASSWORD}
     volumes:
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf.conf:/etc/telegraf/eaton-server-room-telegraf.conf:ro
+
+  telegraf-apc-network-shelf:
+    image: telegraf
+    container_name: telegraf-apc-network-shelf
+    restart: always
+    environment:
+      - INFLUX_TOKEN=${APC_NETWORK_SHELF_INFLUX_TOKEN}
+      - NUT_USERNAME=${APC_NETWORK_SHELF_NUT_USERNAME}
+      - NUT_PASSWORD=${APC_NETWORK_SHELF_NUT_PASSWORD}
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/apc-network-shelf-telegraf.conf:ro
