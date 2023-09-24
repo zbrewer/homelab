@@ -138,4 +138,10 @@
         handle @eaton {
                 reverse_proxy 10.0.10.30
         }
+
+        # Home Assistant
+        @haos host haos.brew.foo
+        handle @haos {
+                reverse_proxy 10.0.101.10:8123
+        }
 }
