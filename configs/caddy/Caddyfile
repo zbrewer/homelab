@@ -144,4 +144,10 @@
         handle @haos {
                 reverse_proxy 10.0.101.10:8123
         }
+
+        # Automatic Ripping Machine
+        @arm host arm.brew.foo
+        handle @arm {
+                reverse_proxy 10.0.10.34:8080
+        }
 }
