@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  pihole-influxdb:
+    image: avojak/pihole-influxdb:latest
+    container_name: pihole-influxdb
+    restart: unless-stopped
+    environment:
+      - "PIHOLE_ALIAS=pihole"
+      - "PIHOLE_ADDRESS=http://10.0.10.11"
+      - "PIHOLE_TOKEN=<token>"
+      - "INFLUXDB_ADDRESS=http://10.0.10.31:8086"
+      - "INFLUXDB_ORG=Brewer"
+      - "INFLUXDB_TOKEN=<token>"
+      - "INFLUXDB_BUCKET=pihole"
