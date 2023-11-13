@@ -7,4 +7,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=America/Denver
+      - WATCHTOWER_CLEANUP=true
     restart: always
