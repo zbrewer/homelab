@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  xcel_itron2mqtt:
+    image: ghcr.io/zaknye/xcel_itron2mqtt:main
+    restart: unless-stopped
+    volumes:
+      - ./certs:/opt/xcel_itron2mqtt/certs
+    environment:
+      - MQTT_SERVER=10.0.101.10
+      - METER_IP=10.0.101.175
+      - METER_PORT=8081
+      - MQTT_USER=<username>
+      - MQTT_PASSWORD=<password>
