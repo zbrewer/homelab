@@ -50,6 +50,18 @@
                 }
         }
 
+        # Omada controller web UI
+        @omada host omada.brew.foo
+        handle @omada {
+                reverse_proxy https://10.0.99.5:8043 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+
+                }
+        }
+
         # Code server
         @codeserver host codeserver.brew.foo
         handle @codeserver {
