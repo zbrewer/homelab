@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mesh-mini:
+    image: brytonsalisbury/mesh-mini
+    container_name: mesh-mini
+    restart: unless-stopped
+    ports:
+      - 3001:3000
