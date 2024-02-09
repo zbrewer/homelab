@@ -37,6 +37,12 @@
                         }
                 }
         }
+
+        # Truenas server IPMI
+        @truenas-ipmi host truenas-ipmi.brew.foo
+        handle @truenas-ipmi {
+                reverse_proxy 10.0.99.20 
+        }
         
         # Unifi controller web UI
         @unifi host unifi.brew.foo
