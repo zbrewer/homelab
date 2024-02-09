@@ -177,4 +177,10 @@
         handle @arm {
                 reverse_proxy 10.0.10.34:8080
         }
+
+        # Mesh-Mini
+        @mesh-mini host mesh-mini.brew.foo
+        handle @mesh-mini {
+                reverse_proxy 10.0.10.31:3001
+        }
 }
