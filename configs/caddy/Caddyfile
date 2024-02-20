@@ -183,4 +183,10 @@
         handle @mesh-mini {
                 reverse_proxy 10.0.10.31:3001
         }
+
+        # Wyze Bridge
+        @wyze-bridge host wyze.brew.foo
+        handle @wyze-bridge {
+                reverse_proxy 10.0.10.31:5000
+        }
 }
