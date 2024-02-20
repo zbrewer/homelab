@@ -1,0 +1,26 @@
+version: '2.4'
+services:
+    wyze-bridge:
+        container_name: wyze-bridge
+        restart: unless-stopped
+        image: mrlt8/wyze-bridge:latest
+        ports:
+            - 1935:1935 # RTMP
+            - 8554:8554 # RTSP
+            - 8888:8888 # HLS
+            - 8889:8889 #WebRTC
+            - 8189:8189/udp # WebRTC/ICE
+            - 5000:5000 # WEB-UI
+        environment:
+            # [OPTIONAL] (Can be set in the WebUI):
+            - WYZE_EMAIL=${EMAIL}
+            - WYZE_PASSWORD=${PASSWORD}
+            # [OPTIONAL] IP Address of the host to enable WebRTC e.g.,:
+            - WB_IP=${HOST_IP}
+            # [OPTIONAL] Wyze API credentials:
+            # - API_ID=
+            # - API_KEY=
+            - SUBSTREAM=True
+            - ENABLE_AUDIO=True
+            # Capture a new snapshot every 30 seconds from the RTSP stream.
+            - SNAPSHOT=RTSP30
