@@ -1,0 +1,26 @@
+version: '3'
+services:
+  tablo-for-channels:
+    image: tmm1/tablo-for-channels
+    container_name: tablo-for-channels
+    restart: unless-stopped
+    ports:
+      - 8050:80
+    environment:
+      - TABLO_IP=10.0.101.171
+  xteve:
+    image: alturismo/xteve
+    container_name: xteve
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=America/Denver
+    volumes:
+      - /mnt/user/appdata/xteve/:/root/.xteve:rw
+      - /mnt/user/appdata/xteve/_config:/config:rw
+      - /tmp/xteve/:/tmp/xteve:rw
+      - /mnt/user/appdata/tvheadend/data/:/TVH
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
