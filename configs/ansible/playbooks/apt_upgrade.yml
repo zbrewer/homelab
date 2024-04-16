@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  become: yes
+  vars_files: ~/ansible/vault_vars.yml
+  tasks:
+
+  - name: Update and upgrade apt packages
+    apt:
+      update_cache: yes
+      upgrade: 'yes'
+      cache_valid_time: 3600  # Don't update the cache if it has been updated within the last hour
+
+  - name: Check if reboot is required
+    stat:
+      path: /var/run/reboot-required
+    register: reboot_file
+    changed_when: reboot_file.stat.exists

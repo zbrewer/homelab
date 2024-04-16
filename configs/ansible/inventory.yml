@@ -1,0 +1,99 @@
+networking:
+  hosts:
+    unifi:
+      ansible_host: 10.0.99.3
+      ansible_user: root
+    omada:
+      ansible_host: 10.0.99.5
+      ansible_user: root
+    pihole:
+      ansible_host: 10.0.10.11
+      ansible_user: root
+    caddy:
+      ansible_host: 10.0.10.33
+      ansible_user: root
+hypervisors:
+  hosts:
+    hydrogen:
+      ansible_host: 10.0.10.10
+      ansible_user: root
+    helium:
+      ansible_host: 10.0.10.20
+      ansible_user: root
+docker:
+  hosts:
+    docker1:
+      ansible_host: 10.0.10.31
+      ansible_user: zbrewer
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ docker1_password }}"
+    automatic_ripping_machine:
+      ansible_host: 10.0.10.34
+      ansible_user: arm
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ arm_password }}"
+    docker2:
+      ansible_host: 10.0.100.5
+      ansible_user: docker
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ docker2_password }}"
+ups:
+  hosts:
+    apc_ups_mon:
+      ansible_host: 10.0.10.211
+      ansible_user: pi
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ apc_upsmon_password }}"
+      ansible_python_interpreter: "/usr/bin/python"
+    eaton_ups_mon:
+      ansible_host: 10.0.10.230
+      ansible_user: root
+vpn:
+  hosts:
+    tailscale:
+      ansible_host: 10.0.200.10
+      ansible_user: tailscale
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ tailscale_server_password }}"
+    wireguard:
+      ansible_host: 10.0.200.13
+      ansible_user: wireguard
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ wireguard_server_password }}"
+apps:
+  hosts:
+    codeserver:
+      ansible_host: 10.0.10.32
+      ansible_user: zbrewer
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ codeserver_password }}"
+    plex:
+      ansible_host: 10.0.80.11
+      ansible_user: zbrewer
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ plex_password }}"
+test:
+  hosts:
+    apc_ups_mon:
+      ansible_host: 10.0.10.211
+      ansible_user: pi
+      ansible_become_method: sudo
+      ansible_become_pass: "{{ apc_upsmon_password }}"
+      ansible_python_interpreter: "/usr/bin/python"
+critical:
+  children:
+    networking:
+    hypervisors:
+non_critical:
+  children:
+    docker:
+    ups:
+    vpn:
+    apps:
+non_hypervisors:
+  children:
+    networking:
+    docker:
+    ups:
+    vpn:
+    apps:
