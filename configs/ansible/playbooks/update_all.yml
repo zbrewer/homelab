@@ -1,0 +1,3 @@
+---
+- import_playbook: apt_upgrade.yml
+- import_playbook: update_pihole.yml

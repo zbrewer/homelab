@@ -5,7 +5,6 @@
   vars_files: ~/ansible/vault_vars.yml
   tasks:
 
-  - name: Update Pi-Hole and Gravity if needed
+  - name: Update Pi-Hole
     ansible_pihole:
       update_pihole: yes
-      update_gravity: yes
