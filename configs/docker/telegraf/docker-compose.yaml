@@ -20,3 +20,14 @@ services:
       - NUT_PASSWORD=${APC_NETWORK_SHELF_NUT_PASSWORD}
     volumes:
       - ./telegraf.conf:/etc/telegraf/apc-network-shelf-telegraf.conf:ro
+
+  telegraf-truenas:
+    image: telegraf
+    container_name: telegraf-truenas
+    restart: always
+    ports:
+      - 8094:8094
+    environment:
+      - INFLUX_TOKEN=${TRUENAS_INFLUX_TOKEN}
+    volumes:
+      - ./truenas.conf:/etc/telegraf/telegraf.conf:ro
