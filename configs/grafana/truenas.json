@@ -1149,17 +1149,14 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "stepBefore",
-            "lineStyle": {
-              "fill": "solid"
-            },
+            "lineInterpolation": "stepAfter",
             "lineWidth": 1,
-            "pointSize": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
-            "spanNulls": false,
+            "showPoints": "never",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1168,7 +1165,6 @@
               "mode": "off"
             }
           },
-          "displayName": "${__field.labels.device}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1183,90 +1179,30 @@
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "Kbits"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
+              "options": "scale.truenas.net.eno3.received value truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdb"
+                "value": "received"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
+              "options": "scale.truenas.net.eno3.sent value truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
+                "value": "sent"
               }
             ]
           }
@@ -1278,18 +1214,16 @@
         "x": 6,
         "y": 12
       },
-      "id": 41,
+      "id": 21,
       "options": {
         "legend": {
           "calcs": [
-            "mean",
-            "max"
+            "max",
+            "last"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true,
-          "sortBy": "Mean",
-          "sortDesc": true
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1299,7 +1233,7 @@
       "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
-          "alias": "Temp: $tag_resource",
+          "alias": "RX: $tag_resource",
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
@@ -1312,11 +1246,10 @@
               "type": "tag"
             }
           ],
-          "measurement": "temperature",
+          "measurement": "if_packets.rx",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "rawQuery": false,
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.net.eno3.received\" or r[\"_measurement\"] == \"scale.truenas.net.eno3.sent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1329,23 +1262,16 @@
               }
             ]
           ],
-          "slimit": "",
           "tags": [
             {
               "key": "host",
               "operator": "=~",
               "value": "/^$host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "resource",
-              "operator": "=~",
-              "value": "/disktemp*/"
             }
           ]
         }
       ],
-      "title": "HDD Temp",
+      "title": "Interface traffic",
       "type": "timeseries"
     },
     {
@@ -1642,6 +1568,8 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 40,
+            "axisSoftMin": 20,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 10,
@@ -1652,22 +1580,26 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "stepAfter",
+            "lineInterpolation": "stepBefore",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
-            "spanNulls": true,
+            "showPoints": "always",
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
+          "displayName": "${__field.labels.device}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1677,56 +1609,122 @@
                 "value": null
               },
               {
+                "color": "yellow",
+                "value": 35
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 50
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "celsius"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.net.eno3.received value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "received"
+                "value": "sdb"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.net.eno3.sent value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sent"
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 18,
+        "h": 7,
+        "w": 9,
         "x": 6,
         "y": 19
       },
-      "id": 21,
+      "id": 41,
       "options": {
         "legend": {
           "calcs": [
-            "max",
-            "last"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": false
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1736,7 +1734,7 @@
       "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
-          "alias": "RX: $tag_resource",
+          "alias": "Temp: $tag_resource",
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
@@ -1749,10 +1747,11 @@
               "type": "tag"
             }
           ],
-          "measurement": "if_packets.rx",
+          "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.net.eno3.received\" or r[\"_measurement\"] == \"scale.truenas.net.eno3.sent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1765,16 +1764,254 @@
               }
             ]
           ],
+          "slimit": "",
           "tags": [
             {
               "key": "host",
               "operator": "=~",
               "value": "/^$host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "resource",
+              "operator": "=~",
+              "value": "/disktemp*/"
             }
           ]
         }
       ],
-      "title": "Interface traffic",
+      "title": "HDD Temps",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 40,
+            "axisSoftMin": 20,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepBefore",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${__field.labels.device}",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 19
+      },
+      "id": 72,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "alias": "Temp: $tag_resource",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "resource"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "slimit": "",
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "resource",
+              "operator": "=~",
+              "value": "/disktemp*/"
+            }
+          ]
+        }
+      ],
+      "title": "SSD Temps",
       "type": "timeseries"
     },
     {
@@ -2409,6 +2646,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 59,
+  "version": 63,
   "weekStart": ""
 }
