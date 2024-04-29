@@ -93,9 +93,11 @@
           "limit": 3,
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -149,9 +151,11 @@
           "limit": 3,
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -205,9 +209,11 @@
           "limit": 3,
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -264,9 +270,11 @@
           "limit": 3,
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -332,9 +340,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -388,9 +398,11 @@
           "limit": 3,
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -456,9 +468,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -499,7 +513,10 @@
       "type": "row"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -540,7 +557,6 @@
         "y": 5
       },
       "id": 13,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
@@ -554,9 +570,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -567,7 +585,7 @@
           "measurement": "uptime",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"uptime\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.uptime.uptime\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -593,13 +611,17 @@
       "type": "stat"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -613,6 +635,520 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sda.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdb.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdc.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdd.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sde.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdf.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdg.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 6,
+        "y": 5
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "alias": "da0",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "geom_busy_percent-da0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk_busy.sda.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdb.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdc.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdd.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sde.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdf.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdg.busy\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Busy Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.zfs.hits.hits value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "hits"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.zfs.hits.misses value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "misses"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 5
+      },
+      "id": 43,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "alias": "ARC Hits",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "arcstat_ratio_arc-hits",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.hits.hits\" or r[\"_measurement\"] == \"scale.truenas.zfs.hits.misses\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "ARC Ratio",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 11,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepBefore",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.load.load1 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "load1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.load.load5 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "load5"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.load.load15 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "load15"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 8
+      },
+      "id": 37,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "groupBy": [],
+          "measurement": "load.shortterm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.load.load1\" or r[\"_measurement\"] == \"scale.truenas.system.load.load5\" or r[\"_measurement\"] == \"scale.truenas.system.load.load15\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            }
+          ]
+        }
+      ],
+      "title": "System load",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineStyle": {
               "fill": "solid"
@@ -649,16 +1185,100 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 18,
+        "h": 7,
+        "w": 9,
         "x": 6,
-        "y": 5
+        "y": 12
       },
       "id": 41,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -695,7 +1315,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"smart_device\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temp_c\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -729,26 +1349,165 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 11,
+            "fillOpacity": 10,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.mem.committed.Committed_AS value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "committed"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.ram.free value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "free"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.zfs.arc_size.arcsz value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "arc"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 12
+      },
+      "id": 69,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.arc_size.arcsz\" or r[\"_measurement\"] == \"scale.truenas.system.ram.free\" or r[\"_measurement\"] == \"scale.truenas.mem.committed.Committed_AS\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
             "pointSize": 5,
@@ -759,13 +1518,12 @@
             "spanNulls": true,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
-          "displayName": "${__field.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -780,18 +1538,67 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.cpu.guest value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "guest"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.cpu.nice value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "nice"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.cpu.system value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "system"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.system.cpu.user value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "user"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 8
+        "y": 14
       },
-      "id": 37,
-      "links": [],
+      "id": 2,
+      "interval": "10s",
       "options": {
         "legend": {
           "calcs": [],
@@ -811,11 +1618,141 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "groupBy": [],
-          "measurement": "load.shortterm",
+          "hide": false,
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.cpu.nice\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.guest\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.system\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.user\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.net.eno3.received value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "received"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.net.eno3.sent value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sent"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 6,
+        "y": 19
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "alias": "RX: $tag_resource",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "resource"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "if_packets.rx",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load1\" or r[\"_field\"] == \"load15\" or r[\"_field\"] == \"load5\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.net.eno3.received\" or r[\"_measurement\"] == \"scale.truenas.net.eno3.sent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -837,7 +1774,7 @@
           ]
         }
       ],
-      "title": "System load",
+      "title": "Interface traffic",
       "type": "timeseries"
     },
     {
@@ -851,6 +1788,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -864,313 +1802,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "displayName": "${__field.name} ${__field.labels.name}",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 11,
-        "x": 6,
-        "y": 13
-      },
-      "id": 44,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.0-beta1",
-      "targets": [
-        {
-          "alias": "da0",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "7XCiuTa7z"
-          },
-          "groupBy": [],
-          "hide": false,
-          "measurement": "geom_busy_percent-da0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"diskio\")\n  |> filter(fn: (r) => r[\"_field\"] == \"io_time\")\n  |> filter(fn: (r) => r[\"name\"] == \"sda\" or r[\"name\"] == \"sdb\" or r[\"name\"] == \"sdc\" or r[\"name\"] == \"sdd\" or r[\"name\"] == \"sde\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> derivative(\n  unit: 1s,\n  nonNegative: true,\n  columns: [\"_value\"],\n  timeColumn: \"_time\"\n  )\n  |> yield(name: \"mean\")",
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        }
-      ],
-      "title": "Disk Busy - The Vault",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 60
-              },
-              {
-                "color": "red",
-                "value": 75
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 7,
-        "x": 17,
-        "y": 13
-      },
-      "id": 66,
-      "options": {
-        "legend": {
-          "calcs": [
-            "last",
-            "diff"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.0-beta1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "7XCiuTa7z"
-          },
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "now-1M",
-      "title": "Tank Percent Used",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {},
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "stepBefore",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "displayName": "${__field.name}",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 0,
-        "y": 14
-      },
-      "id": 2,
-      "interval": "10s",
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.0-beta1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "7XCiuTa7z"
-          },
-          "hide": false,
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"cpu\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_user\" or r[\"_field\"] == \"usage_system\" or r[\"_field\"] == \"usage_nice\" or r[\"_field\"] == \"usage_guest\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"cpu-total\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "refId": "A"
-        }
-      ],
-      "title": "CPU Usage",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {},
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
+            "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1204,7 +1836,56 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.cputemp.temperatures.0 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "core0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.cputemp.temperatures.1 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "core1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.cputemp.temperatures.2 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "core2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.cputemp.temperatures.3 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "core3"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -1213,13 +1894,13 @@
         "y": 20
       },
       "id": 40,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean"
+            "mean",
+            "last"
           ],
-          "displayMode": "list",
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1247,7 +1928,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n    |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temp_input\")\r\n  |> filter(fn: (r) => r[\"chip\"] == \"coretemp-isa-0000\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.0\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.1\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.2\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.3\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1287,6 +1968,19 @@
       "type": "timeseries"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 71,
+      "panels": [],
+      "title": "Tank Measurements",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "influxdb",
         "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
@@ -1297,6 +1991,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1310,6 +2005,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1326,9 +2022,7 @@
               "mode": "off"
             }
           },
-          "displayName": "${__field.name}",
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1342,340 +2036,215 @@
               }
             ]
           },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 18,
-        "x": 6,
-        "y": 20
-      },
-      "id": 43,
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean",
-            "min"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.0-beta1",
-      "targets": [
-        {
-          "alias": "ARC Hits",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "7XCiuTa7z"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "arcstat_ratio_arc-hits",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zfs\")\r\n    |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"arcstats_allocated\" or r[\"_field\"] == \"arcstats_misses\" or r[\"_field\"] == \"arcstats_hits\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> derivative(\r\n  unit: 1s,\r\n  nonNegative: true,\r\n  columns: [\"_value\"],\r\n  timeColumn: \"_time\"\r\n  )\r\n  |> yield(name: \"mean\")",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "ARC Ratio",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {}
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "hit_ratio",
-            "binary": {
-              "left": "arcstats_hits {host=\"truenas\", name=\"zfs\", pools=\"boot-pool::tank\"}",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "Total"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            },
-            "replaceFields": true
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
+          "unit": "KiBs"
         },
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "used {host=\"truenas\", name=\"mem\"}"
+              "id": "byRegexp",
+              "options": "/.*sda.reads.*/"
             },
             "properties": [
               {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": true
-                }
+                "id": "displayName",
+                "value": "sda read"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdb.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb read"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdc.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc read"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdd.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd read"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sde.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde read"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdf.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf reads"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdg.reads.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg reads"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sda.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdb.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdc.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdd.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdd write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sde.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdf.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*sdg.writes.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdg write"
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 7,
-        "w": 6,
+        "h": 8,
+        "w": 12,
         "x": 0,
-        "y": 27
+        "y": 28
       },
-      "id": 69,
+      "id": 70,
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Last *",
-          "sortDesc": true
+          "placement": "right",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "single",
           "sort": "none"
         }
       },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-          },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mem\" or r[\"_measurement\"] == \"zfs\")\n  |> filter(fn: (r) => r[\"_field\"] == \"free\" or r[\"_field\"] == \"arcstats_size\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-          },
-          "hide": false,
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mem\")\n  |> filter(fn: (r) => r[\"_field\"] == \"used\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
-          "refId": "B"
-        }
-      ],
-      "title": "Memory Usage",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "system",
-            "binary": {
-              "left": "used {host=\"truenas\", name=\"mem\"}",
-              "operator": "-",
-              "reducer": "sum",
-              "right": "arcstats_size {host=\"truenas\", name=\"zfs\", pools=\"boot-pool::tank\"}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "lastNotNull"
-            },
-            "replaceFields": false
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {},
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "displayName": "${__field.name} ${__field.labels.interface}",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 18,
-        "x": 6,
-        "y": 27
-      },
-      "id": 21,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
       "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
-          "alias": "RX: $tag_resource",
+          "alias": "da0",
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "groupBy": [
-            {
-              "params": [
-                "resource"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "if_packets.rx",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"rx\" or r[\"_field\"] == \"tx\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> derivative(\r\n    unit: 1s,\r\n    nonNegative: true,\r\n    columns: [\"_value\"],\r\n    timeColumn: \"_time\"\r\n    )\r\n  |> yield(name: \"mean\")",
-          "refId": "A",
+          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk.sda.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sda.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdf.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdf.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdg.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdg.writes\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "refId": "F",
           "resultFormat": "time_series",
           "select": [
             [
@@ -1696,13 +2265,113 @@
           ]
         }
       ],
-      "title": "Interface traffic",
+      "title": "Disk I/O - Tank",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 66,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "diff"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "7XCiuTa7z"
+          },
+          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "now-1M",
+      "title": "Tank Percent Used",
       "type": "timeseries"
     }
   ],
-  "refresh": "5m",
-  "schemaVersion": 38,
-  "style": "dark",
+  "refresh": "10s",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -1740,6 +2409,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 33,
+  "version": 59,
   "weekStart": ""
 }
