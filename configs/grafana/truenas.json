@@ -97,7 +97,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -155,7 +155,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -213,7 +213,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -274,14 +274,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf-long-term\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -344,7 +344,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -402,7 +402,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -472,7 +472,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -574,7 +574,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
@@ -2537,7 +2537,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2576,6 +2576,7 @@
         "y": 28
       },
       "id": 66,
+      "maxDataPoints": 536,
       "options": {
         "legend": {
           "calcs": [
@@ -2598,7 +2599,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"truenas-telegraf-long-term\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],
@@ -2646,6 +2647,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 63,
+  "version": 65,
   "weekStart": ""
 }
