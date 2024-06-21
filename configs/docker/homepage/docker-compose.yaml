@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3030:3000
+    volumes:
+      - /home/zbrewer/homepage/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
