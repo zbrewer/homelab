@@ -189,4 +189,10 @@
         handle @wyze-bridge {
                 reverse_proxy 10.0.10.31:5000
         }
+
+        #Homepage
+        @homepage host homepage.brew.foo
+        handle @homepage {
+                reverse_proxy 10.0.10.31:3030
+        }
 }
