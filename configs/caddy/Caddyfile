@@ -195,4 +195,10 @@
         handle @homepage {
                 reverse_proxy 10.0.10.31:3030
         }
+
+        # Uptime Kuma
+        @uptime host uptime.brew.foo
+        handle @uptime {
+                reverse_proxy 10.0.10.31:3060
+        }
 }
