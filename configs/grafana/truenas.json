@@ -752,6 +752,18 @@
                 "value": "sdg"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.disk_busy.sdh.busy value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdh"
+              }
+            ]
           }
         ]
       },
@@ -789,7 +801,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk_busy.sda.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdb.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdc.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdd.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sde.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdf.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdg.busy\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk_busy.sda.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdb.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdc.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdd.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sde.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdf.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdg.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdh.busy\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -1624,43 +1636,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
             },
             "properties": [
               {
@@ -1672,12 +1648,24 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sde"
+                "value": "sda"
               }
             ]
           },
@@ -1689,7 +1677,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdg"
+                "value": "sde"
               }
             ]
           },
@@ -1701,7 +1689,19 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sda"
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3 value truenas"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdf"
               }
             ]
           }
@@ -1750,7 +1750,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"truenas-telegraf\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1860,7 +1860,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdb"
+                "value": "sdg"
               }
             ]
           },
@@ -1872,67 +1872,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
+                "value": "sdh"
               }
             ]
           }
@@ -1981,7 +1921,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"truenas-telegraf\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2480,7 +2420,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk.sda.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sda.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdf.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdf.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdg.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdg.writes\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk.sda.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sda.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.writes\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2647,6 +2587,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 65,
+  "version": 72,
   "weekStart": ""
 }
