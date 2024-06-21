@@ -1,7 +1,7 @@
 version: '3'
 services:
   mesh-mini:
-    image: brytonsalisbury/mesh-mini
+    image: brytonsalisbury/mesh-mini:amd64
     container_name: mesh-mini
     restart: unless-stopped
     ports:
