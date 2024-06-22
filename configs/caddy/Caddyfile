@@ -56,6 +56,7 @@
         # Truenas server IPMI
         @truenas-ipmi host truenas-ipmi.brew.foo
         handle @truenas-ipmi {
+                import authentik_auth
                 reverse_proxy https://10.0.99.20 {
                         header_up Host {http.request.host}
                         header_up X-Real-IP {http.request.remote}
@@ -179,6 +180,7 @@
         # Eaton Network Card-MS on 5PX2200RT
         @eaton host eaton.brew.foo
         handle @eaton {
+                import authentik_auth
                 reverse_proxy 10.0.10.30
         }
 
@@ -197,6 +199,7 @@
         # Mesh-Mini
         @mesh-mini host mesh-mini.brew.foo
         handle @mesh-mini {
+                import authentik_auth
                 reverse_proxy 10.0.10.31:3001
         }
 
