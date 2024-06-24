@@ -15,6 +15,7 @@ services:
       - 3456:3456
     volumes:
       - /home/zbrewer/vikunja/files:/app/vikunja/files
+      - /home/zbrewer/vikunja/config.yml:/etc/vikunja/config.yml
     depends_on:
       db:
         condition: service_healthy
