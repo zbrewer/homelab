@@ -221,4 +221,10 @@
         handle @uptime {
                 reverse_proxy 10.0.10.31:3060
         }
+
+        # Vikunja
+        @todo host todo.brew.foo
+        handle @todo {
+                reverse_proxy 10.0.10.31:3456
+        }
 }
