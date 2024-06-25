@@ -24,6 +24,13 @@ services:
       - influxdb
     environment:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel
+      # Configuration for email
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:465
+      - GF_SMTP_USER=example@gmail.com
+      - GF_SMTP_PASSWORD=${GMAIL_PASSWORD}
+      - GF_SMTP_FROM_ADDRESS=example@gmail.com
+      - GF_SMTP_FROM_NAME=Grafana
 
 volumes:
   grafana-storage:
