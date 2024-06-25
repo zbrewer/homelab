@@ -1,3 +1,11 @@
+# Email notifications.
+mailer:
+  enabled: true
+  host: "smtp.gmail.com"
+  port: 587
+  username: "<email-address>"
+  password: "<app-password>"
+  fromemail: "<email-address>"
 auth:
   # Local authentication will let users log in and register (if enabled) through the db.
   # This is the default auth mechanism and does not require any additional configuration.
