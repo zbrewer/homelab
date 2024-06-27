@@ -87,9 +87,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value_and_name"
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -147,9 +149,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -207,9 +211,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -268,9 +274,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -328,9 +336,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -387,9 +397,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -415,6 +427,7 @@
             "mode": "fixed"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -489,6 +502,7 @@
         "showValue": "never",
         "stacking": "normal",
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         },
@@ -596,7 +610,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Max"
+              "options": "Last *"
             },
             "properties": [
               {
@@ -653,7 +667,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -687,7 +701,11 @@
         },
         {
           "id": "reduce",
-          "options": {}
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
         }
       ],
       "type": "table"
@@ -741,7 +759,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Max"
+              "options": "Last *"
             },
             "properties": [
               {
@@ -798,7 +816,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -832,7 +850,11 @@
         },
         {
           "id": "reduce",
-          "options": {}
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
         }
       ],
       "type": "table"
@@ -886,7 +908,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Max"
+              "options": "Last *"
             },
             "properties": [
               {
@@ -943,7 +965,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -977,7 +999,11 @@
         },
         {
           "id": "reduce",
-          "options": {}
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
         }
       ],
       "type": "table"
@@ -1137,6 +1163,7 @@
           "values": false
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
@@ -1332,6 +1359,7 @@
           "values": false
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
@@ -1347,13 +1375,11 @@
         }
       ],
       "title": "Query Types",
-      "transformations": [],
       "type": "piechart"
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -1388,10 +1414,11 @@
     "from": "now-3h",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "",
   "title": "Pi-hole",
   "uid": "zLZsJ9v4k",
-  "version": 3,
+  "version": 6,
   "weekStart": ""
 }
