@@ -22,6 +22,19 @@
   "links": [],
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Current",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "influxdb",
         "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
@@ -29,39 +42,257 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "mappings": [],
+          "max": 76,
+          "min": 59,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "yellow",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 0,
+        "y": 1
+      },
+      "id": 7,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_environmental_sensor_temperature\" or r[\"entity_id\"] == \"living_room_current_temperature\" or r[\"entity_id\"] == \"main_floor_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Upstairs Temperature",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 76,
+          "min": 59,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "yellow",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 3,
+        "y": 1
+      },
+      "id": 8,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"basement_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Basement Temperature",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
             },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 86,
+          "min": 49,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 81
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 6,
+        "y": 1
+      },
+      "id": 13,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"server_room_environment_sensor_temperature\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Server Room Environment Sensor Temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Server Room Temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
@@ -72,78 +303,136 @@
                 "value": null
               },
               {
+                "color": "yellow",
+                "value": 6000
+              },
+              {
+                "color": "orange",
+                "value": 12000
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 19200
               }
             ]
           },
-          "unit": "fahrenheit"
+          "unit": "watt"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Downstairs"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
+        "w": 3,
+        "x": 17,
+        "y": 1
       },
-      "id": 1,
+      "id": 12,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "hide": false,
-          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_environmental_sensor_temperature\" or r[\"entity_id\"] == \"living_room_current_temperature\" or r[\"entity_id\"] == \"main_floor_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"xcel_itron_5_instantaneous_demand_value\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
+        }
+      ],
+      "title": "Current Power Use",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": 20,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "yellow",
+                "value": 61
+              },
+              {
+                "color": "red",
+                "value": 81
+              }
+            ]
+          },
+          "unit": "percent"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 0,
+        "y": 9
+      },
+      "id": 11,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "hide": false,
-          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"basement_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"mean\")",
-          "refId": "B"
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_current_humidity\" or r[\"entity_id\"] == \"bedroom_environmental_sensor_humidity\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
         }
       ],
-      "title": "Per-Floor Temperature",
+      "title": "Upstairs Humidity",
       "transformations": [
         {
-          "filter": {
-            "id": "byRefId",
-            "options": "A"
-          },
           "id": "calculateField",
           "options": {
-            "alias": "Upstairs Average",
             "mode": "reduceRow",
             "reduce": {
               "reducer": "mean"
@@ -152,7 +441,95 @@
           }
         }
       ],
-      "type": "timeseries"
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 90,
+          "min": 20,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "yellow",
+                "value": 61
+              },
+              {
+                "color": "red",
+                "value": 81
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 6,
+        "y": 9
+      },
+      "id": 14,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"server_room_environment_sensor_humidity\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Server Room Humidity",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Historical",
+      "type": "row"
     },
     {
       "datasource": {
@@ -230,8 +607,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 0,
+        "y": 18
       },
       "id": 2,
       "options": {
@@ -254,7 +631,7 @@
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
           "hide": false,
-          "query": "import \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_current_humidity\" or r[\"entity_id\"] == \"bedroom_environmental_sensor_humidity\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_current_humidity\" or r[\"entity_id\"] == \"bedroom_environmental_sensor_humidity\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -277,8 +654,788 @@
         }
       ],
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-orange",
+            "mode": "palette-classic",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value {domain=\"sensor\", entity_id=\"xcel_itron_5_instantaneous_demand_value\", friendly_name=\"Xcel Itron 5 Instantaneous Demand value\", name=\"W\", source=\"HA\"}"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Load Without Server"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"eaton-5px2200rt\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"output_load_percent\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
+          "refId": "B"
+        }
+      ],
+      "title": "Power Usage",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Server Load",
+            "binary": {
+              "left": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}",
+              "operator": "*",
+              "right": "19.2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Espresso Machine Load",
+            "binary": {
+              "left": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}",
+              "operator": "-",
+              "right": "0"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Load Without Server",
+            "binary": {
+              "left": "value {domain=\"sensor\", entity_id=\"xcel_itron_5_instantaneous_demand_value\", friendly_name=\"Xcel Itron 5 Instantaneous Demand value\", name=\"W\", source=\"HA\"}",
+              "operator": "-",
+              "right": "Server Load"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Base Load",
+            "binary": {
+              "left": "Load Without Server",
+              "operator": "-",
+              "right": "Espresso Machine Load"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 65
+              },
+              {
+                "color": "#EAB839",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "°F value {domain=\"sensor\", entity_id=\"basement_temperature\", friendly_name=\"Basement Temperature\", source=\"HA\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Downstairs"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_environmental_sensor_temperature\" or r[\"entity_id\"] == \"living_room_current_temperature\" or r[\"entity_id\"] == \"main_floor_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"basement_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"mean\")",
+          "refId": "B"
+        }
+      ],
+      "title": "Temperatures",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "A"
+          },
+          "id": "calculateField",
+          "options": {
+            "alias": "Upstairs Average",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Downstairs"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_environmental_sensor_temperature\" or r[\"entity_id\"] == \"living_room_current_temperature\" or r[\"entity_id\"] == \"main_floor_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"basement_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"mean\")",
+          "refId": "B"
+        }
+      ],
+      "title": "Upstairs Temperature Difference",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "A"
+          },
+          "id": "calculateField",
+          "options": {
+            "alias": "Upstairs Average",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Upstairs Delta",
+            "binary": {
+              "left": "Upstairs Average",
+              "operator": "-",
+              "right": "value {domain=\"sensor\", entity_id=\"basement_temperature\", friendly_name=\"Basement Temperature\", name=\"°F\", source=\"HA\"}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "yellow",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 34
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_environmental_sensor_temperature\" or r[\"entity_id\"] == \"living_room_current_temperature\" or r[\"entity_id\"] == \"main_floor_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"last\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Upstairs Temperature",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "A"
+          },
+          "id": "calculateField",
+          "options": {
+            "alias": "Upstairs Average",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "yellow",
+                "value": 71
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Downstairs"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 34
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°F\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"basement_temperature\")\r\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 15m)\r\n  |> yield(name: \"mean\")",
+          "refId": "B"
+        }
+      ],
+      "title": "Downstairs Temperature",
+      "type": "timeseries"
     }
   ],
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -293,6 +1450,6 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "fdq0miajv0jy8e",
-  "version": 8,
+  "version": 59,
   "weekStart": ""
 }
