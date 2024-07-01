@@ -3,3 +3,15 @@ AUTHENTIK_SECRET_KEY=<secret>
 AUTHENTIK_ERROR_REPORTING__ENABLED=true
 COMPOSE_PORT_HTTP=9000
 COMPOSE_PORT_HTTPS=9001
+# Email configuration
+AUTHENTIK_EMAIL__HOST=smtp.gmail.com
+AUTHENTIK_EMAIL__PORT=465
+AUTHENTIK_EMAIL__USERNAME=example@gmail.com
+AUTHENTIK_EMAIL__PASSWORD=<redacted>
+# Use StartTLS
+AUTHENTIK_EMAIL__USE_TLS=false
+# Use SSL
+AUTHENTIK_EMAIL__USE_SSL=true
+AUTHENTIK_EMAIL__TIMEOUT=10
+# To change the sender's display name, use a format like `Name <account@domain>`
+AUTHENTIK_EMAIL__FROM=Authentik <example@gmail.com>
