@@ -6,6 +6,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - TZ=America/Denver
-      - WATCHTOWER_CLEANUP=true
+      TZ: America/Denver
+      WATCHTOWER_CLEANUP: true
+      # Settings for notifications
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: Docker 1
+      # Additional notification URLs can be added to this list (space separated), if desired.
+      # See https://containrrr.dev/watchtower/notifications/#shoutrrr_notifications for instructions.
+      # See https://containrrr.dev/shoutrrr/v0.8/services/overview/ for a list of available options.
+      WATCHTOWER_NOTIFICATION_URL: >
+        smtp://${EMAIL_SENDER}:${EMAIL_SENDER_PASS}@smtp.gmail.com:465/?from=${EMAIL_SENDER}&to=${DEST_EMAIL}&fromName=Shoutrrr
     restart: always
