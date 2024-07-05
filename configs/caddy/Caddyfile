@@ -227,4 +227,10 @@
         handle @todo {
                 reverse_proxy 10.0.10.31:3456
         }
+
+        # Speedtest
+        @speedtest host speedtest.brew.foo
+        handle @speedtest {
+                reverse_proxy 10.0.10.31:8282
+        }
 }
