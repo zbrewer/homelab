@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  speedtest:
+    container_name: speedtest
+    image: ghcr.io/librespeed/speedtest:latest
+    restart: unless-stopped
+    environment:
+      # See https://github.com/librespeed/speedtest/blob/master/doc_docker.md
+      MODE: standalone
+      #TITLE: "LibreSpeed"
+      #TELEMETRY: "false"
+      #ENABLE_ID_OBFUSCATION: "false"
+      #REDACT_IP_ADDRESSES: "false"
+      #PASSWORD:
+      #EMAIL:
+      DISABLE_IPINFO: "false"
+      DISTANCE: "mi"
+      #WEBPORT: 80
+    ports:
+      - 8282:80
