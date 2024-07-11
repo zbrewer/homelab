@@ -233,4 +233,10 @@
         handle @speedtest {
                 reverse_proxy 10.0.10.31:8282
         }
+
+        # Actual Budget
+        @actual host budget.brew.foo
+        handle @actual {
+                reverse_proxy 10.0.10.31:5006
+        }
 }
