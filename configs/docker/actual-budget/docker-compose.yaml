@@ -1,0 +1,9 @@
+services:
+  actual_server:
+    image: docker.io/actualbudget/actual-server:latest
+    restart: unless-stopped
+    ports:
+      - '5006:5006'
+    # See environment options and more details at https://actualbudget.github.io/docs/Installing/Configuration
+    volumes:
+      - /home/zbrewer/actual/data:/data
