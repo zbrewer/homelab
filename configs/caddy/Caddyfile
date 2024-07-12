@@ -239,4 +239,10 @@
         handle @actual {
                 reverse_proxy 10.0.10.31:5006
         }
+
+        # Wiki.js
+        @wiki host wiki.brew.foo
+        handle @wiki {
+                reverse_proxy 10.0.10.31:3002
+        }
 }
