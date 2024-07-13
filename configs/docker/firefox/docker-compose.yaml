@@ -7,7 +7,7 @@ services:
     ports:
       - 5800:5800
     volumes:
-      - ./data:/config:rw
+      - /home/docker/firefox/data:/config:rw
     environment:
       - TZ=America/Denver
       - SECURE_CONNECTION=1
