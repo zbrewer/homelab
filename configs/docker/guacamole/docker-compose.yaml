@@ -41,6 +41,12 @@ services:
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PASSWORD: <password>
       POSTGRES_USER: guacamole_user
+      # Pre-seed an admin user from Authentik in Guacamole before enabling OpenID login below.
+      # OPENID_AUTHORIZATION_ENDPOINT: https://authentik.brew.foo/application/o/authorize/
+      # OPENID_CLIENT_ID: <redacted>
+      # OPENID_ISSUER: https://authentik.brew.foo/application/o/guacamole/
+      # OPENID_JWKS_ENDPOINT: https://authentik.brew.foo/application/o/guacamole/jwks/
+      # OPENID_REDIRECT_URI: https://guacamole.brew.foo/guacamole/
     image: guacamole/guacamole
     links:
       - guacd
