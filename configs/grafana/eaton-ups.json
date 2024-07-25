@@ -63,6 +63,8 @@
       },
       "id": 1,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -72,9 +74,10 @@
           "values": false
         },
         "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -130,6 +133,8 @@
       },
       "id": 13,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -139,9 +144,10 @@
           "values": false
         },
         "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -230,6 +236,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -237,9 +244,11 @@
           "fields": "/^output_on_battery \\{agent_host=\"10\\.0\\.10\\.30\", host=\"eaton\\-5px2200rt\\-server\\-room\"\\}$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -251,7 +260,6 @@
         }
       ],
       "title": "On Battery",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -310,6 +318,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -317,9 +326,11 @@
           "fields": "/^low_battery \\{agent_host=\"10\\.0\\.10\\.30\", host=\"eaton\\-5px2200rt\\-server\\-room\"\\}$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -331,7 +342,6 @@
         }
       ],
       "title": "Low Battery",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -373,6 +383,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -380,9 +391,11 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -482,6 +495,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -489,9 +503,11 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -591,6 +607,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -598,9 +615,11 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -700,6 +719,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -707,9 +727,11 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -818,6 +840,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -825,9 +848,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -880,6 +905,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -887,9 +913,11 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -955,6 +983,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -962,9 +991,11 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1030,6 +1061,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1037,9 +1069,11 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1105,6 +1139,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1112,9 +1147,11 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1152,6 +1189,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1302,6 +1340,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1431,6 +1470,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1551,6 +1591,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1800,6 +1841,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1807,9 +1849,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value_and_name"
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1822,6 +1866,109 @@
       ],
       "title": "Faults",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "No"
+                },
+                "true": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Yes"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "id": 23,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp\")\n  |> filter(fn: (r) => r[\"_field\"] == \"output_on_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> map(\n        fn: (r) => ({r with _value: if r._value == 2 then false else true}),\n    )",
+          "refId": "A"
+        }
+      ],
+      "title": "On Battery",
+      "type": "state-timeline"
     },
     {
       "datasource": {
@@ -1843,13 +1990,15 @@
           "mappings": [
             {
               "options": {
-                "2": {
+                "from": 2,
+                "result": {
                   "color": "semi-dark-red",
                   "index": 0,
                   "text": "Bad Input"
-                }
+                },
+                "to": 4
               },
-              "type": "value"
+              "type": "range"
             }
           ],
           "thresholds": {
@@ -1906,13 +2055,13 @@
         ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 7,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 30
       },
       "id": 11,
-      "maxDataPoints": 262800,
+      "maxDataPoints": 52560,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -1925,7 +2074,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1945,7 +2094,7 @@
           "refId": "B"
         }
       ],
-      "timeFrom": "now-6M",
+      "timeFrom": "now-1w",
       "title": "Input Failures",
       "transformations": [
         {
@@ -1986,9 +2135,8 @@
       "type": "table"
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "refresh": "",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -2042,8 +2190,8 @@
       {
         "current": {
           "selected": false,
-          "text": "0.08356",
-          "value": "0.08356"
+          "text": "0.155",
+          "value": "0.155"
         },
         "description": "Electricity price (in dollars) per kWh in the summer (June 1 - September 30)",
         "hide": 0,
@@ -2053,15 +2201,15 @@
         "name": "summer_electricity_price",
         "options": [],
         "query": "",
-        "queryValue": "0.08356",
+        "queryValue": "0.155",
         "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
           "selected": false,
-          "text": "0.07136",
-          "value": "0.07136"
+          "text": "0.135",
+          "value": "0.135"
         },
         "description": "The price of electricity in kWh in the Winter (October 1 - May 31)",
         "hide": 0,
@@ -2071,20 +2219,20 @@
         "name": "winter_electricity_price",
         "options": [],
         "query": "",
-        "queryValue": "0.07136",
+        "queryValue": "0.135",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
-    "to": "now"
+    "from": "2024-07-21T11:35:00.000Z",
+    "to": "2024-07-21T11:45:59.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "UPS",
   "uid": "e9ab27d6-688e-4b1d-a6a1-ab7f301ebe15",
-  "version": 81,
+  "version": 91,
   "weekStart": ""
 }
