@@ -63,6 +63,8 @@
       },
       "id": 1,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -72,16 +74,17 @@
           "values": false
         },
         "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> last()",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> last()",
           "refId": "A"
         }
       ],
@@ -130,6 +133,8 @@
       },
       "id": 13,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -139,16 +144,17 @@
           "values": false
         },
         "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -225,6 +231,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -232,9 +239,11 @@
           "fields": "/^_value$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
@@ -246,7 +255,6 @@
         }
       ],
       "title": "Status",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -288,6 +296,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -295,16 +304,18 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -316,7 +327,7 @@
           "options": {
             "alias": "load_watts",
             "binary": {
-              "left": "load_percent {host=\"apc-backup-es-750-network-shelf\", model=\"Back-UPS ES 750\", serial=\"3B0933X30614\", status_OL=\"true\", ups_name=\"apc-backup-es-750-network-shelf\"}",
+              "left": "Value",
               "operator": "*",
               "reducer": "sum",
               "right": "4.5"
@@ -397,6 +408,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -404,16 +416,18 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -425,7 +439,7 @@
           "options": {
             "alias": "load_watts",
             "binary": {
-              "left": "load_percent {host=\"apc-backup-es-750-network-shelf\", model=\"Back-UPS ES 750\", serial=\"3B0933X30614\", status_OL=\"true\", ups_name=\"apc-backup-es-750-network-shelf\"}",
+              "left": "Value",
               "operator": "*",
               "reducer": "sum",
               "right": "4.5"
@@ -506,6 +520,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -513,16 +528,18 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -534,7 +551,7 @@
           "options": {
             "alias": "load_watts",
             "binary": {
-              "left": "load_percent {host=\"apc-backup-es-750-network-shelf\", model=\"Back-UPS ES 750\", serial=\"3B0933X30614\", status_OL=\"true\", ups_name=\"apc-backup-es-750-network-shelf\"}",
+              "left": "Value",
               "operator": "*",
               "reducer": "sum",
               "right": "4.5"
@@ -615,6 +632,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -622,16 +640,18 @@
           "fields": "/^kW_minute$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -643,7 +663,7 @@
           "options": {
             "alias": "load_watts",
             "binary": {
-              "left": "load_percent {host=\"apc-backup-es-750-network-shelf\", model=\"Back-UPS ES 750\", serial=\"3B0933X30614\", status_OL=\"true\", ups_name=\"apc-backup-es-750-network-shelf\"}",
+              "left": "Value",
               "operator": "*",
               "reducer": "sum",
               "right": "4.5"
@@ -733,6 +753,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -740,16 +761,18 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"time_left_ns\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"time_left_ns\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -795,6 +818,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -802,16 +826,18 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -870,6 +896,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -877,16 +904,18 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -945,6 +974,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -952,16 +982,18 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -1020,6 +1052,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1027,16 +1060,18 @@
           "fields": "/.*/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "11.1.3",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "import \"date\"\r\n\r\nfrom(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value:\r\n          if date.month(t: r._time) >= 6 and date.month(t: r._time) <= 9 then \r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${summer_electricity_price}\r\n          else\r\n            (((float(v: r._value) * 4.5) / 1000.0) / 60.0) * ${winter_electricity_price}\r\n      })\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -1067,6 +1102,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1132,21 +1168,6 @@
                 "value": "Output Load"
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Output Load"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
           }
         ]
       },
@@ -1180,7 +1201,7 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"load_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1191,7 +1212,7 @@
           "options": {
             "alias": "output_load",
             "binary": {
-              "left": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\"}",
+              "left": "Value",
               "operator": "*",
               "reducer": "sum",
               "right": "19.2"
@@ -1217,6 +1238,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1328,7 +1350,7 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"battery_voltage\" or r[\"_field\"] == \"battery_charge_percent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"battery_voltage\" or r[\"_field\"] == \"battery_charge_percent\")\r\n  |> keep(columns:[\"_time\", \"_value\", \"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
@@ -1346,6 +1368,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1395,24 +1418,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "input_volts"
+              "options": "Value"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Input Voltage"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "output_volts"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Output Voltage"
               }
             ]
           }
@@ -1448,17 +1459,119 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"input_voltage\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${Bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"input_voltage\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A"
         }
       ],
       "title": "Voltages",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "OB": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Yes"
+                },
+                "OL": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "No"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 23,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\n  |> filter(fn: (r) => r[\"_field\"] == \"ups_status\")\n  |> keep(columns:[\"_time\", \"_value\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "refId": "A"
+        }
+      ],
+      "title": "On Battery",
+      "type": "state-timeline"
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "refresh": "",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -1512,8 +1625,8 @@
       {
         "current": {
           "selected": false,
-          "text": "0.08356",
-          "value": "0.08356"
+          "text": "0.155",
+          "value": "0.155"
         },
         "description": "Electricity price (in dollars) per kWh in the summer (June 1 - September 30)",
         "hide": 0,
@@ -1523,15 +1636,15 @@
         "name": "summer_electricity_price",
         "options": [],
         "query": "",
-        "queryValue": "0.08356",
+        "queryValue": "0.155",
         "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
           "selected": false,
-          "text": "0.07136",
-          "value": "0.07136"
+          "text": "0.135",
+          "value": "0.135"
         },
         "description": "The price of electricity in kWh in the Winter (October 1 - May 31)",
         "hide": 0,
@@ -1541,7 +1654,7 @@
         "name": "winter_electricity_price",
         "options": [],
         "query": "",
-        "queryValue": "0.07136",
+        "queryValue": "0.135",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -1555,6 +1668,6 @@
   "timezone": "",
   "title": "UPS - NUT",
   "uid": "b17b3632-bfe9-4c86-bdac-69a1c06fbbf9",
-  "version": 23,
+  "version": 35,
   "weekStart": ""
 }
