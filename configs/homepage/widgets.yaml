@@ -1,0 +1,18 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+- search:
+    provider: google
+    target: _blank
+
+- openmeteo:
+    # Uses current location unless one is specified.
+    # label:
+    # latitude:
+    # longitude:
+    timezone: America/Denver
+    units: imperial
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1
