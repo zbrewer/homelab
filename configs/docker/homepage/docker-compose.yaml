@@ -8,4 +8,5 @@ services:
       - 3030:3000
     volumes:
       - /home/zbrewer/homepage/config:/app/config
+      - /home/zbrewer/homepage/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock
