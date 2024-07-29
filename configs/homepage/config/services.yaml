@@ -1,0 +1,186 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Applications:
+    - Vikunja:
+        href: https://todo.brew.foo
+        description: To Do List
+        icon: vikunja.png
+
+    - Home Assistant:
+        href: https://haos.brew.foo
+        description: Home automation
+        icon: home-assistant.png
+        widget:
+          type: homeassistant
+          url: https://haos.brew.foo
+          key: "<redacted>"
+          custom:
+            - state: sensor.xcel_itron_5_instantaneous_demand_value
+              label: Current Power
+            - state: sensor.outside_environmental_sensor_temperature
+              label: Outside Temp
+            - state: sensor.living_room_current_temperature
+              label: Inside Temp
+
+    - Code Server:
+        href: https://codeserver.brew.foo
+        icon: code-server.png
+
+    - Actual Budget:
+        href: https://budget.brew.foo
+        icon: actual.png
+
+    - Wiki.js:
+        href: https://wiki.brew.foo
+        icon: wikijs.png
+
+    - Firefox:
+        href: https://firefox.brew.foo
+        icon: firefox.png
+
+    - Wyze:
+        href: https://wyze.brew.foo
+        icon: si-wyze-#1DF0BB
+
+    - Speedtest:
+        href: https://speedtest.brew.foo
+        icon: librespeed.png
+
+- Media:
+    - Plex:
+        href: https://app.plex.tv/
+        description: Media server
+        icon: plex.png
+        widget:
+          type: plex
+          url: http://10.0.80.11:32400
+          # See https://www.plexopedia.com/plex-media-server/general/plex-token/
+          key: "<redacted>"
+
+    - Tautulli:
+        href: https://tautulli.brew.foo
+        description: Plex statistics
+        icon: tautulli.png
+        widget:
+          type: tautulli
+          url: https://tautulli.brew.foo
+          # Found in the web interface under `Settings > Web Interface > API`
+          key: "<redacted>"
+          enableUser: true # optional, defaults to false
+          showEpisodeNumber: true # optional, defaults to false
+          expandOneStreamToTwoRows: false # optional, defaults to true
+
+    - Automatic Ripping Machine:
+        href: https://arm.brew.foo
+        description: DVD, Blu-Ray, and CD Ripper
+        icon: mdi-disc-player
+
+
+- Infrastructure:
+    - Hydrogen:
+        href: https://hydrogen.brew.foo
+        description: Hydrogen Proxmox host
+        icon: proxmox.png
+        widget:
+          type: proxmox
+          url: https://hydrogen.brew.foo
+          username: "<redacted>"
+          password: "<redacted>"
+          # node: pve-1 # optional
+
+    - Helium:
+        href: https://helium.brew.foo
+        description: Helium Proxmox host
+        icon: proxmox.png
+        widget:
+          type: proxmox
+          url: https://helium.brew.foo
+          username: "<redacted>"
+          password: "<redacted>"
+          # node: pve-1 # optional
+
+    - TrueNAS:
+        href: https://truenas.brew.foo
+        description: Primary storage server
+        icon: truenas.png
+        widget:
+          type: truenas
+          url: https://truenas.brew.foo
+          # username: user # not required if using api key
+          # password: pass # not required if using api key
+          key: "<redacted>" # not required if using username / password
+          enablePools: true # optional, defaults to false
+          nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+
+    - Pi-Hole:
+        href: https://pihole.brew.foo
+        description: Ad-blocking DNS server
+        icon: pi-hole.png
+        widget:
+          type: pihole
+          url: https://pihole.brew.foo
+          version: 5 # required if running v6 or higher, defaults to 5
+          key: "<redacted>" # optional
+
+- Management:
+    - Guacamole:
+        href: https://guacamole.brew.foo
+        icon: guacamole.png
+
+    - Portainer:
+        href: https://portainer.brew.foo
+        icon: portainer.png
+
+    - Grafana:
+        href: https://grafana.brew.foo
+        icon: grafana.png
+
+    - InfluxDB:
+        href: https://influxdb.brew.foo
+        icon: influxdb.png
+
+    - Uptime Kuma:
+        href: https://uptime.brew.foo
+        icon: uptime-kuma.png
+        widget:
+          type: uptimekuma
+          url: https://uptime.brew.foo
+          slug: homelab
+
+    - UniFi Controller:
+        href: https://unifi.brew.foo
+        icon: unifi.png
+        widget:
+          type: unifi
+          url: https://unifi.brew.foo
+          username: "<redacted>"
+          password: "<redacted>"
+          # site: Site Name # optional
+
+    - Authentik:
+        href: https://authentik.brew.foo
+        icon: authentik.png
+        widget:
+          type: authentik
+          url: https://authentik.brew.foo
+          key: "<redacted>"
+
+    - Eaton UPS:
+        href: https://eaton.brew.foo
+        icon: /icons/eaton.png
+
+    - Mesh Commander:
+        href: https://mesh-mini.brew.foo
+        icon: meshcentral.png
+
+    - TrueNAS IPMI:
+        href: https://truenas-ipmi.brew.foo
+        icon: supermicro.png
+
+    - Up Snap:
+        href: https://wol.brew.foo
+        description: Wake-on-LAN
+        icon: upsnap.png
+
