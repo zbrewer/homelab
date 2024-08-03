@@ -8,6 +8,8 @@ services:
     environment:
       TZ: America/Denver
       WATCHTOWER_CLEANUP: true
+      # Schedule definition. Leaving this off will default to using a poll interval of 24hrs. See https://containrrr.dev/watchtower/arguments/#poll_interval.
+      WATCHTOWER_SCHEDULE: "0 0 5 * * SAT"  # Run every Saturday at 5:00am
       # Settings for notifications
       WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${NOTIFICATIONS_HOSTNAME}
       # Additional notification URLs can be added to this list (space separated), if desired.
