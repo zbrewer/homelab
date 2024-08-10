@@ -180,7 +180,7 @@
         # Eaton Network Card-MS on 5PX2200RT
         @eaton host eaton.brew.foo
         handle @eaton {
-                import authentik_auth
+                # import authentik_auth
                 reverse_proxy 10.0.10.30
         }
 
