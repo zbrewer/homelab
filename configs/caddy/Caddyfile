@@ -68,6 +68,17 @@
                         }
                 } 
         }
+
+        # Truenas backup server
+        @truenas-backup host truenas-backup.brew.foo
+        handle @truenas-backup {
+                reverse_proxy https://10.0.20.11 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
         
         # Unifi controller web UI
         @unifi host unifi.brew.foo
