@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   telegraf-eaton-server-room:
     image: telegraf
@@ -8,7 +7,7 @@ services:
       - INFLUX_TOKEN=${EATON_SERVER_ROOM_INFLUX_TOKEN}
       - SNMP_PASSWORD=${EATON_SERVER_ROOM_SNMP_PASSWORD}
     volumes:
-      - ./telegraf.conf:/etc/telegraf/eaton-server-room-telegraf.conf:ro
+      - /home/zbrewer/telegraf/eaton-server-room-telegraf.conf:/etc/telegraf/telegraf.conf:ro
 
   telegraf-apc-network-shelf:
     image: telegraf
@@ -19,7 +18,7 @@ services:
       - NUT_USERNAME=${APC_NETWORK_SHELF_NUT_USERNAME}
       - NUT_PASSWORD=${APC_NETWORK_SHELF_NUT_PASSWORD}
     volumes:
-      - ./telegraf.conf:/etc/telegraf/apc-network-shelf-telegraf.conf:ro
+      - /home/zbrewer/telegraf/apc-network-shelf.conf:/etc/telegraf/telegraf.conf:ro
 
   telegraf-truenas:
     image: telegraf
@@ -30,4 +29,4 @@ services:
     environment:
       - INFLUX_TOKEN=${TRUENAS_INFLUX_TOKEN}
     volumes:
-      - ./truenas.conf:/etc/telegraf/telegraf.conf:ro
+      - /home/zbrewer/telegraf/truenas.conf:/etc/telegraf/telegraf.conf:ro
