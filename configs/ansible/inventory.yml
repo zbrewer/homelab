@@ -45,9 +45,6 @@ ups:
       ansible_become_method: sudo
       ansible_become_pass: "{{ apc_upsmon_password }}"
       ansible_python_interpreter: "/usr/bin/python"
-    eaton_ups_mon:
-      ansible_host: 10.0.10.230
-      ansible_user: root
 vpn:
   hosts:
     tailscale:
