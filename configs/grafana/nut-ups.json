@@ -1491,15 +1491,15 @@
           "mappings": [
             {
               "options": {
-                "OB": {
-                  "color": "red",
-                  "index": 0,
-                  "text": "Yes"
-                },
-                "OL": {
+                "false": {
                   "color": "green",
                   "index": 1,
                   "text": "No"
+                },
+                "true": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Yes"
                 }
               },
               "type": "value"
@@ -1562,7 +1562,7 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\n  |> filter(fn: (r) => r[\"_field\"] == \"ups_status\")\n  |> keep(columns:[\"_time\", \"_value\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\n  |> filter(fn: (r) => r[\"_field\"] == \"ups_status\")\n  |> keep(columns:[\"_time\", \"_value\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> map(\n        fn: (r) => ({r with _value: if r._value =~ /^OB.*/ then true else false}),\n    )",
           "refId": "A"
         }
       ],
@@ -1624,9 +1624,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "0.155",
-          "value": "0.155"
+          "selected": true,
+          "text": "> 0.162",
+          "value": "0.162"
         },
         "description": "Electricity price (in dollars) per kWh in the summer (June 1 - September 30)",
         "hide": 0,
@@ -1636,7 +1636,7 @@
         "name": "summer_electricity_price",
         "options": [],
         "query": "",
-        "queryValue": "0.155",
+        "queryValue": "0.162",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -1668,6 +1668,6 @@
   "timezone": "",
   "title": "UPS - NUT",
   "uid": "b17b3632-bfe9-4c86-bdac-69a1c06fbbf9",
-  "version": 35,
+  "version": 38,
   "weekStart": ""
 }
