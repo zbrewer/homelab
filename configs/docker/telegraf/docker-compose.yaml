@@ -30,3 +30,14 @@ services:
       - INFLUX_TOKEN=${TRUENAS_INFLUX_TOKEN}
     volumes:
       - /home/zbrewer/telegraf/truenas.conf:/etc/telegraf/telegraf.conf:ro
+
+  telegraf-truenas-backup:
+    image: telegraf
+    container_name: telegraf-truenas-backup
+    restart: always
+    ports:
+      - 8095:8095
+    environment:
+      - INFLUX_TOKEN=${TRUENAS_BACKUP_INFLUX_TOKEN}
+    volumes:
+      - /home/zbrewer/telegraf/truenas-backup.conf:/etc/telegraf/telegraf.conf:ro
