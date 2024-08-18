@@ -1,0 +1,165 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: Every 10s
+      folder: UPS Alerts
+      interval: 10s
+      rules:
+        - uid: adurz6gcislxcd
+          title: Eaton UPS On Battery
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: e2dbf712-0a75-47a4-9933-3f9b32bb0ea9
+              model:
+                intervalMs: 1000
+                maxDataPoints: 43200
+                query: "from(bucket: \"eaton-5px2200rt\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"output_on_battery\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)"
+                refId: A
+            - refId: B
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params: []
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                reducer: last
+                refId: B
+                type: reduce
+            - refId: C
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1.9
+                            - 2.1
+                        type: outside_range
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: KeepLast
+          execErrState: KeepLast
+          for: 10s
+          annotations:
+            summary: Eaton UPS on battery power
+          labels:
+            severity: urgent
+          isPaused: false
+        - uid: cduvafjyjxts0b
+          title: APC UPS on Battery
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: e2dbf712-0a75-47a4-9933-3f9b32bb0ea9
+              model:
+                intervalMs: 1000
+                maxDataPoints: 43200
+                query: "from(bucket: \"nut\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"upsd\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"ups_status\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"apc-backup-es-750-network-shelf\")\r\n  |> keep(columns:[\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> map(\r\n        fn: (r) => ({r with _value: if r._value =~ /^OB.*/ then 2 else 1}),\r\n    )"
+                refId: A
+            - refId: B
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params: []
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                reducer: last
+                refId: B
+                type: reduce
+            - refId: C
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0.9
+                            - 1.1
+                        type: outside_range
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: KeepLast
+          execErrState: KeepLast
+          for: 10s
+          annotations:
+            summary: APC UPS on battery power
+          labels:
+            severity: urgent
+          isPaused: false
