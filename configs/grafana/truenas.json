@@ -51,11 +51,14 @@
           "refId": "A"
         }
       ],
-      "title": "Data Added to Tank",
+      "title": "Data Added to ${pool_title}",
       "type": "row"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -85,6 +88,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -97,14 +101,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -113,7 +117,10 @@
       "type": "stat"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -143,6 +150,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -155,14 +163,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -171,7 +179,10 @@
       "type": "stat"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -201,6 +212,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -213,14 +225,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -262,6 +274,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -274,14 +287,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf-long-term\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket_long_term}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -333,6 +346,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -344,14 +358,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],
@@ -392,6 +406,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [],
           "fields": "",
@@ -402,14 +417,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"free\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"free\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -461,6 +476,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -472,14 +488,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"fragmentation\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root/raidz-0\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"fragmentation\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root/raidz-0\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -563,6 +579,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -574,7 +591,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -585,7 +602,7 @@
           "measurement": "uptime",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.uptime.uptime\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.uptime.uptime\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -668,104 +685,7 @@
           },
           "unit": "ms"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sda.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdb.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdc.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdd.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sde.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdf.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdg.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.disk_busy.sdh.busy value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdh"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -801,7 +721,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk_busy.sda.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdb.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdc.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdd.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sde.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdf.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdg.busy\" or r[\"_measurement\"] == \"scale.truenas.disk_busy.sdh.busy\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.disk_busy\\.[a-z]{3}\\.busy/)\n  |> map(\n        fn: (r) => ({r with _field: r._measurement}),\n    )\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -824,6 +744,15 @@
         }
       ],
       "title": "Disk Busy Time",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/^scale\\.truenas\\.disk_busy\\.([a-z]{3})\\.busy.*/",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -888,8 +817,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.zfs.hits.hits value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.zfs\\.hits\\.hits.*/"
             },
             "properties": [
               {
@@ -900,8 +829,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.zfs.hits.misses value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.zfs\\.hits\\.misses.*/"
             },
             "properties": [
               {
@@ -960,7 +889,7 @@
           "measurement": "arcstat_ratio_arc-hits",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.hits.hits\" or r[\"_measurement\"] == \"scale.truenas.zfs.hits.misses\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.hits.hits\" or r[\"_measurement\"] == \"scale.truenas.zfs.hits.misses\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1044,8 +973,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.load.load1 value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.load\\.load1 value .*/"
             },
             "properties": [
               {
@@ -1056,8 +985,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.load.load5 value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.load\\.load5 value .*/"
             },
             "properties": [
               {
@@ -1068,8 +997,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.load.load15 value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.load\\.load15 value .*/"
             },
             "properties": [
               {
@@ -1110,7 +1039,7 @@
           "measurement": "load.shortterm",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.load.load1\" or r[\"_measurement\"] == \"scale.truenas.system.load.load5\" or r[\"_measurement\"] == \"scale.truenas.system.load.load15\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.load.load1\" or r[\"_measurement\"] == \"scale.truenas.system.load.load5\" or r[\"_measurement\"] == \"scale.truenas.system.load.load15\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1193,32 +1122,7 @@
           },
           "unit": "Kbits"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.net.eno3.received value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "received"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.net.eno3.sent value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sent"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1261,7 +1165,7 @@
           "measurement": "if_packets.rx",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.net.eno3.received\" or r[\"_measurement\"] == \"scale.truenas.net.eno3.sent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.net.${interface}.received\" or r[\"_measurement\"] == \"scale.truenas.net.${interface}.sent\")\r\n  |> map(\r\n        fn: (r) => ({r with _field: r._measurement}),\r\n    )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1284,6 +1188,15 @@
         }
       ],
       "title": "Interface traffic",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/^scale\\.truenas\\.net\\..+\\.([a-z]+) truenas/",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1348,8 +1261,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.mem.committed.Committed_AS value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.mem\\.committed\\.Committed_AS.*/"
             },
             "properties": [
               {
@@ -1360,8 +1273,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.ram.free value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.ram\\.free.*/"
             },
             "properties": [
               {
@@ -1372,8 +1285,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.zfs.arc_size.arcsz value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.zfs\\.arc_size\\.arcsz.*/"
             },
             "properties": [
               {
@@ -1413,7 +1326,7 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.arc_size.arcsz\" or r[\"_measurement\"] == \"scale.truenas.system.ram.free\" or r[\"_measurement\"] == \"scale.truenas.mem.committed.Committed_AS\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.arc_size.arcsz\" or r[\"_measurement\"] == \"scale.truenas.system.ram.free\" or r[\"_measurement\"] == \"scale.truenas.mem.committed.Committed_AS\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1481,20 +1394,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.cpu.guest value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "guest"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.cpu.nice value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.cpu\\.nice.*/"
             },
             "properties": [
               {
@@ -1505,25 +1406,37 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.cpu.system value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.cpu\\.guest.*/"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "system"
+                "value": "guest"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.system.cpu.user value truenas"
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.cpu\\.user.*/"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "user"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/scale\\.truenas\\.system\\.cpu\\.system.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "system"
               }
             ]
           }
@@ -1557,7 +1470,7 @@
             "uid": "7XCiuTa7z"
           },
           "hide": false,
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.cpu.nice\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.guest\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.system\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.user\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.cpu.nice\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.guest\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.system\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.user\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1636,7 +1549,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH ZDHBC2CH truenas"
             },
             "properties": [
               {
@@ -1648,7 +1561,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y ZDHBCD6Y truenas"
             },
             "properties": [
               {
@@ -1660,7 +1573,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL ZDHBCJEL truenas"
             },
             "properties": [
               {
@@ -1672,7 +1585,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 ZDHBCKH5 truenas"
             },
             "properties": [
               {
@@ -1684,7 +1597,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 ZDHBDJS1 truenas"
             },
             "properties": [
               {
@@ -1696,12 +1609,36 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3 value truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3 9QJ0J6G3 truenas"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "sdf"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZX213EF4.ZX213EF4 ZX213EF4 truenas-backup"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "scale.truenas.smart_log_smart.disktemp.ZX20SPDB.ZX20SPDB ZX20SPDB truenas-backup"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
               }
             ]
           }
@@ -1750,7 +1687,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"truenas-telegraf\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"ZDHBC2CH\", \"ZDHBCD6Y\", \"ZDHBCJEL\", \"ZDHBCKH5\", \"ZDHBDJS1\", \"9QJ0J6G3\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1855,7 +1792,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M value truenas"
+              "options": "S1ATNSAD906882M"
             },
             "properties": [
               {
@@ -1867,12 +1804,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P value truenas"
+              "options": "S21TNXAG607043P"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "sdh"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "BTHV701404A4200MGN truenas-backup"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc"
               }
             ]
           }
@@ -1921,7 +1870,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nfrom(bucket: \"truenas-telegraf\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S1ATNSAD906882M.S1ATNSAD906882M\" or r[\"_measurement\"] == \"scale.truenas.smart_log_smart.disktemp.S21TNXAG607043P.S21TNXAG607043P\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"S1ATNSAD906882M\", \"S21TNXAG607043P\"]\r\ntruenas_backup_drives = [\"BTHV701404A4200MGN\"]\r\n\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2013,56 +1962,7 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.cputemp.temperatures.0 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "core0"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.cputemp.temperatures.1 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "core1"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.cputemp.temperatures.2 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "core2"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.cputemp.temperatures.3 value truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "core3"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -2105,7 +2005,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.0\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.1\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.2\" or r[\"_measurement\"] == \"scale.truenas.cputemp.temperatures.3\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.cputemp\\.temperatures\\.[0-9]+/)\r\n  |> map(\r\n        fn: (r) => ({r with _field: r._measurement}),\r\n    )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2142,6 +2042,15 @@
         }
       ],
       "title": "CPU Temp",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/^scale\\.truenas\\.cputemp\\.temperatures\\.([0-9]+).*/",
+            "renamePattern": "core $1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2154,7 +2063,7 @@
       },
       "id": 71,
       "panels": [],
-      "title": "Tank Measurements",
+      "title": "${pool_title} Measurements",
       "type": "row"
     },
     {
@@ -2215,176 +2124,7 @@
           },
           "unit": "KiBs"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sda.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda read"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdb.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb read"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdc.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc read"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdd.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd read"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sde.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde read"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdf.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf reads"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdg.reads.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg reads"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sda.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdb.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdc.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdd.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sde.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdf.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf write"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*sdg.writes.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg write"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -2404,7 +2144,7 @@
         },
         "tooltip": {
           "mode": "single",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.4.0-beta1",
@@ -2420,7 +2160,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"truenas-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.disk.sda.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sda.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdb.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdc.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sdd.writes\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.reads\" or r[\"_measurement\"] == \"scale.truenas.disk.sde.writes\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdc\", \"sdd\", \"sde\"]\ntruenas_boot_pool_drives = [\"sdf\", \"sdg\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdc\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2442,7 +2182,23 @@
           ]
         }
       ],
-      "title": "Disk I/O - Tank",
+      "title": "Disk I/O - ${pool_title}",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*([a-z]{3})\\.(read)s.*/",
+            "renamePattern": "$1 $2"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*([a-z]{3})\\.(write)s.*/",
+            "renamePattern": "$1 $2"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2539,12 +2295,12 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"truenas-telegraf-long-term\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"tank\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"${bucket_long_term}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],
       "timeFrom": "now-1M",
-      "title": "Tank Percent Used",
+      "title": "${pool_title} Percent Used",
       "type": "timeseries"
     }
   ],
@@ -2552,7 +2308,165 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "truenas-telegraf",
+          "value": "truenas-telegraf"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "buckets()",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Bucket",
+        "multi": false,
+        "name": "bucket",
+        "options": [],
+        "query": {
+          "query": "buckets()"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "truenas-telegraf-long-term",
+          "value": "truenas-telegraf-long-term"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "buckets()",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Long Term Bucket",
+        "multi": false,
+        "name": "bucket_long_term",
+        "options": [],
+        "query": {
+          "query": "buckets()"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "truenas",
+          "value": "truenas"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": {
+          "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "eno3",
+          "value": "eno3"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value: if r._value == \"truenas\" then \"eno3\"\r\n        else if r._value == \"truenas-backup\" then \"enp5s0f1\"\r\n        else \"\"\r\n      })\r\n    )",
+        "description": "Network interface to monitor",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Interface",
+        "multi": false,
+        "name": "interface",
+        "options": [],
+        "query": {
+          "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value: if r._value == \"truenas\" then \"eno3\"\r\n        else if r._value == \"truenas-backup\" then \"enp5s0f1\"\r\n        else \"\"\r\n      })\r\n    )"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "tank",
+          "value": "tank"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Pool",
+        "multi": false,
+        "name": "pool",
+        "options": [],
+        "query": {
+          "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 2,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Tank",
+          "value": "Tank"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+        },
+        "definition": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")\r\n  |> map(\r\n    fn: (r) => ({\r\n      r with _value: strings.title(v: r._value)\r\n    })\r\n  ) ",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Pool Title",
+        "multi": false,
+        "name": "pool_title",
+        "options": [],
+        "query": {
+          "query": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")\r\n  |> map(\r\n    fn: (r) => ({\r\n      r with _value: strings.title(v: r._value)\r\n    })\r\n  ) "
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-30m",
@@ -2587,6 +2501,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 72,
+  "version": 123,
   "weekStart": ""
 }
