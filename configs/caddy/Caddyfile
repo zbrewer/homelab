@@ -79,6 +79,17 @@
                         }
                 }
         }
+
+        # TrueCommand
+        @truecommand host truecommand.brew.foo
+        handle @truecommand {
+                reverse_proxy https://10.0.10.31:9005 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
         
         # Unifi controller web UI
         @unifi host unifi.brew.foo
