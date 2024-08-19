@@ -108,7 +108,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -170,7 +170,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -232,7 +232,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -294,7 +294,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket_long_term}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket_long_term}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"alloc\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -365,7 +365,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],
@@ -424,7 +424,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"free\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"free\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -495,7 +495,7 @@
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"fragmentation\")\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root/raidz-0\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\n  |> filter(fn: (r) => r[\"_field\"] == \"fragmentation\")\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\n  |> filter(fn: (r) => r[\"vdev\"] == \"root/mirror-0\" or r[\"vdev\"] == \"root/raidz-0\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1192,7 +1192,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "/^scale\\.truenas\\.net\\..+\\.([a-z]+) truenas/",
+            "regex": "/^scale\\.truenas\\.net\\..+\\.([a-z]+) truenas.*/",
             "renamePattern": "$1"
           }
         }
@@ -2295,7 +2295,7 @@
             "type": "influxdb",
             "uid": "7XCiuTa7z"
           },
-          "query": "from(bucket: \"${bucket_long_term}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"truenas\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"${bucket_long_term}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"size\" or r[\"_field\"] == \"alloc\")\r\n  |> filter(fn: (r) => r[\"state\"] == \"ONLINE\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> filter(fn: (r) => r[\"vdev\"] == \"root\")\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(\r\n        fn: (r) => ({\r\n            _time: r._time,\r\n            _measurement: r._measurement,\r\n            _field: \"pool_used_percent\",\r\n            _value: float(v: r.alloc) / float(v: r.size) * 100.0\r\n        }),\r\n    )\r\n    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],
@@ -2397,7 +2397,7 @@
           "type": "influxdb",
           "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
         },
-        "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value: if r._value == \"truenas\" then \"eno3\"\r\n        else if r._value == \"truenas-backup\" then \"enp5s0f1\"\r\n        else \"\"\r\n      })\r\n    )",
+        "definition": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n    |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.net\\..+\\.received$/ )\r\n    |> map(fn: (r) => ({\r\n      r with _measurement: strings.split(v: r._measurement, t: \".\")[3]\r\n    }))\r\n    |> keyValues(keyColumns: [\"_measurement\"])\r\n    |> group()\r\n    |> keep(columns: [\"_measurement\"])\r\n    |> distinct(column: \"_measurement\")",
         "description": "Network interface to monitor",
         "hide": 2,
         "includeAll": false,
@@ -2406,7 +2406,7 @@
         "name": "interface",
         "options": [],
         "query": {
-          "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")\r\n  |> map(\r\n      fn: (r) => ({\r\n        r with _value: if r._value == \"truenas\" then \"eno3\"\r\n        else if r._value == \"truenas-backup\" then \"enp5s0f1\"\r\n        else \"\"\r\n      })\r\n    )"
+          "query": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n    |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.net\\..+\\.received$/ )\r\n    |> map(fn: (r) => ({\r\n      r with _measurement: strings.split(v: r._measurement, t: \".\")[3]\r\n    }))\r\n    |> keyValues(keyColumns: [\"_measurement\"])\r\n    |> group()\r\n    |> keep(columns: [\"_measurement\"])\r\n    |> distinct(column: \"_measurement\")"
         },
         "refresh": 1,
         "regex": "",
@@ -2501,6 +2501,6 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 123,
+  "version": 133,
   "weekStart": ""
 }
