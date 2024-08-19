@@ -1,0 +1,17 @@
+# This is for unifi-poller v2.
+services:
+  unifi-poller:
+    container_name: unifi-poller
+    restart: unless-stopped
+    image: ghcr.io/unpoller/unpoller:${POLLER_TAG}
+    environment:
+      - UP_INFLUXDB_ORG=${INFLUXDB_ORG}
+      - UP_INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - UP_INFLUXDB_AUTH_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+      - UP_INFLUXDB_URL=${INFLUXDB_URL}
+      - UP_UNIFI_DEFAULT_USER=${UNIFI_USER}
+      - UP_UNIFI_DEFAULT_PASS=${UNIFI_PASS}
+      - UP_UNIFI_DEFAULT_URL=${UNIFI_URL}
+      - UP_POLLER_DEBUG=${POLLER_DEBUG}
+      - UP_UNIFI_DEFAULT_SAVE_DPI=${POLLER_SAVE_DPI}
+      - UP_PROMETHEUS_NAMESPACE=unpoller
