@@ -114,6 +114,19 @@
           enablePools: true # optional, defaults to false
           nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
 
+    - TrueNAS Backup:
+        href: https://truenas-backup.brew.foo
+        description: Backup storage server
+        icon: truenas.png
+        widget:
+          type: truenas
+          url: https://truenas-backup.brew.foo
+          # username: user # not required if using api key
+          # password: pass # not required if using api key
+          key: "<redacted>" # not required if using username / password
+          enablePools: true # optional, defaults to false
+          nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+
     - Pi-Hole:
         href: https://pihole.brew.foo
         description: Ad-blocking DNS server
@@ -183,4 +196,9 @@
         href: https://wol.brew.foo
         description: Wake-on-LAN
         icon: upsnap.png
+
+    - TrueCommand:
+        href: https://truecommand.brew.foo
+        description: Central TrueNAS management interface
+        icon: truenas.png
 
