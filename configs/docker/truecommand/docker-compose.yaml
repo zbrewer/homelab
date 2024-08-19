@@ -1,0 +1,10 @@
+services:
+  truecommand:
+    image: ghcr.io/ixsystems/truecommand:v3.0.0
+    container_name: truecommand
+    restart: unless-stopped
+    ports:
+      - 9004:80
+      - 9005:443
+    volumes:
+      - /home/zbrewer/truecommand/data:/data
