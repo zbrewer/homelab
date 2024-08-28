@@ -69,6 +69,11 @@ apps:
       ansible_user: zbrewer
       ansible_become_method: sudo
       ansible_become_pass: "{{ plex_password }}"
+other:
+  hosts:
+    dell-idrac-power-manager:
+      ansible_host: 10.0.99.221
+      ansible_user: root
 test:
   hosts:
     apc_ups_mon:
@@ -87,6 +92,7 @@ non_critical:
     ups:
     vpn:
     apps:
+    other:
 non_hypervisors:
   children:
     networking:
@@ -94,3 +100,4 @@ non_hypervisors:
     ups:
     vpn:
     apps:
+    other:
