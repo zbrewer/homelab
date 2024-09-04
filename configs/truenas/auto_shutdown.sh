@@ -25,7 +25,7 @@ if [[ (( $failed_replication_tasks > 0 )) ]]; then
     exit 2
 fi
 
-if [[ (( $current_smart_tests > 0 )) || (( $current_scrub_tasks > 0 )) || (( running_replication_tasks > 0 )) ]]; then
+if [[ (( $current_smart_tests > 0 )) || (( $current_scrub_tasks > 0 )) || (( $running_replication_tasks > 0 )) ]]; then
     echo "Tasks running, not shutting down."
     exit 1
 else
