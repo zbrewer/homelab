@@ -7,9 +7,6 @@
 
   - name: Run Codeserver Update Script
     ansible.builtin.shell: curl -fsSL https://code-server.dev/install.sh | sh
-    args:
-      # Don't provide warning about using curl - this usage is required by the install/update script.
-      warn: no
 
   - name: Reload Codeserver
     ansible.builtin.systemd:
