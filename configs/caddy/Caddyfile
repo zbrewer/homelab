@@ -267,4 +267,11 @@
         handle @wiki {
                 reverse_proxy 10.0.10.31:3002
         }
+
+        # Ham Clock
+        @hamclock host hamclock.brew.foo
+        handle @hamclock {
+                reverse_proxy 10.0.10.31:8101
+                redir / /live.html
+        }
 }
