@@ -36,6 +36,10 @@
         href: https://wiki.brew.foo
         icon: wikijs.png
 
+    - Ham Clock:
+        href: https://hamclock.brew.foo
+        icon: mdi-radio-tower
+
     - Firefox:
         href: https://firefox.brew.foo
         icon: firefox.png
