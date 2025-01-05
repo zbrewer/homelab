@@ -52,11 +52,6 @@ vpn:
       ansible_user: tailscale
       ansible_become_method: sudo
       ansible_become_pass: "{{ tailscale_server_password }}"
-    wireguard:
-      ansible_host: 10.0.200.13
-      ansible_user: wireguard
-      ansible_become_method: sudo
-      ansible_become_pass: "{{ wireguard_server_password }}"
 apps:
   hosts:
     codeserver:
