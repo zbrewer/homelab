@@ -17,4 +17,4 @@ services:
       DISTANCE: "mi"
       #WEBPORT: 80
     ports:
-      - 8282:80
+      - 8282:8080
