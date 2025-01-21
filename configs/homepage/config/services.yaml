@@ -36,6 +36,10 @@
         href: https://wiki.brew.foo
         icon: wikijs.png
 
+    - Wavelog:
+        href: https://wavelog.brew.foo
+        icon: /icons/wavelog_logo_darkly.png
+
     - Ham Clock:
         href: https://hamclock.brew.foo
         icon: mdi-radio-tower
