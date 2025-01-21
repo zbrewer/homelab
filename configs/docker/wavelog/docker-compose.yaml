@@ -1,0 +1,33 @@
+services:
+  wavelog-db:
+    image: mariadb:11.3
+    container_name: wavelog-db
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: wavelog
+      MARIADB_USER: wavelog
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - wavelog-dbdata:/var/lib/mysql
+    restart: unless-stopped
+
+  wavelog-main:
+    container_name: wavelog-main
+    image: ghcr.io/wavelog/wavelog:latest
+    depends_on:
+      - wavelog-db
+    environment:
+      CI_ENV: docker
+    volumes:
+      - wavelog-config:/var/www/html/application/config/docker
+      - wavelog-uploads:/var/www/html/uploads
+      - wavelog-userdata:/var/www/html/userdata
+    ports:
+      - "8186:80"
+    restart: unless-stopped
+
+volumes:
+  wavelog-dbdata:
+  wavelog-uploads:
+  wavelog-userdata:
+  wavelog-config:
