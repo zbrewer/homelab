@@ -30,7 +30,7 @@
 
     - Actual Budget:
         href: https://budget.brew.foo
-        icon: actual.png
+        icon: actual-budget.png
 
     - Wiki.js:
         href: https://wiki.brew.foo
