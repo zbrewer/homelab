@@ -274,4 +274,10 @@
                 reverse_proxy 10.0.10.31:8101
                 redir / /live.html
         }
+
+        #Wavelog
+        @waveloghostwavelog.brew.foo
+        handle@wavelog {
+                reverse_proxy10.0.10.31:8186
+        }
 }
