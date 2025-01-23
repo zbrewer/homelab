@@ -26,14 +26,9 @@
   "graphTooltip": 1,
   "id": 7,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -42,15 +37,6 @@
       },
       "id": 55,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Data Added to ${pool_title}",
       "type": "row"
     },
@@ -101,7 +87,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -163,7 +149,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -225,7 +211,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -287,7 +273,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -358,7 +344,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -417,7 +403,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -488,7 +474,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -504,10 +490,6 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -516,15 +498,6 @@
       },
       "id": 62,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Server Measurements",
       "type": "row"
     },
@@ -591,7 +564,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -644,6 +617,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -708,7 +682,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "da0",
@@ -772,6 +746,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -864,7 +839,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "ARC Hits",
@@ -929,6 +904,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 11,
             "gradientMode": "none",
@@ -1028,7 +1004,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -1081,6 +1057,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1146,7 +1123,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "RX: $tag_resource",
@@ -1216,6 +1193,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "hue",
@@ -1320,6 +1298,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -1350,6 +1329,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1462,7 +1442,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -1496,6 +1476,7 @@
             "axisSoftMax": 40,
             "axisSoftMin": 20,
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1549,12 +1530,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBC2CH.ZDHBC2CH ZDHBC2CH truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.9JG4DJKT.9JG4DJKT 9JG4DJKT truenas"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdd"
+                "value": "sdb"
               }
             ]
           },
@@ -1566,7 +1547,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdb"
+                "value": "sdd"
               }
             ]
           },
@@ -1590,7 +1571,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sde"
+                "value": "sdf"
               }
             ]
           },
@@ -1602,19 +1583,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.9QJ0J6G3.9QJ0J6G3 9QJ0J6G3 truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
+                "value": "sdg"
               }
             ]
           },
@@ -1668,7 +1637,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1687,7 +1656,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"ZDHBC2CH\", \"ZDHBCD6Y\", \"ZDHBCJEL\", \"ZDHBCKH5\", \"ZDHBDJS1\", \"9QJ0J6G3\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"ZDHBCD6Y\", \"ZDHBCJEL\", \"ZDHBCKH5\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1739,6 +1708,7 @@
             "axisSoftMax": 40,
             "axisSoftMin": 20,
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1797,7 +1767,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdg"
+                "value": "sde"
               }
             ]
           },
@@ -1809,7 +1779,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdh"
+                "value": "sdc"
               }
             ]
           },
@@ -1851,7 +1821,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1920,6 +1890,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1986,7 +1957,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2083,6 +2054,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2147,7 +2119,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "da0",
@@ -2160,7 +2132,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdc\", \"sdd\", \"sde\"]\ntruenas_boot_pool_drives = [\"sdf\", \"sdg\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdc\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdd\", \"sdf\", \"sdg\"]\ntruenas_boot_pool_drives = [\"sdc\", \"sde\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdc\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2218,6 +2190,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2288,7 +2261,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -2304,14 +2277,14 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "10s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "truenas-telegraf",
           "value": "truenas-telegraf"
         },
@@ -2323,7 +2296,6 @@
         "hide": 2,
         "includeAll": false,
         "label": "Bucket",
-        "multi": false,
         "name": "bucket",
         "options": [],
         "query": {
@@ -2331,13 +2303,10 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "truenas-telegraf-long-term",
           "value": "truenas-telegraf-long-term"
         },
@@ -2349,7 +2318,6 @@
         "hide": 2,
         "includeAll": false,
         "label": "Long Term Bucket",
-        "multi": false,
         "name": "bucket_long_term",
         "options": [],
         "query": {
@@ -2357,41 +2325,33 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": "truenas-backup",
-          "value": "truenas-backup"
+          "text": "truenas",
+          "value": "truenas"
         },
         "datasource": {
           "type": "influxdb",
           "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
         },
         "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")",
-        "hide": 0,
         "includeAll": false,
         "label": "Host",
-        "multi": false,
         "name": "host",
         "options": [],
         "query": {
           "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> keyValues(keyColumns: [\"host\"])\r\n  |> group()\r\n  |> keep(columns: [\"host\"])\r\n  |> distinct(column: \"host\")"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "enp5s0f1",
-          "value": "enp5s0f1"
+          "text": "eno3",
+          "value": "eno3"
         },
         "datasource": {
           "type": "influxdb",
@@ -2402,49 +2362,41 @@
         "hide": 2,
         "includeAll": false,
         "label": "Interface",
-        "multi": false,
         "name": "interface",
         "options": [],
         "query": {
           "query": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n    |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.net\\..+\\.received$/ )\r\n    |> map(fn: (r) => ({\r\n      r with _measurement: strings.split(v: r._measurement, t: \".\")[3]\r\n    }))\r\n    |> keyValues(keyColumns: [\"_measurement\"])\r\n    |> group()\r\n    |> keep(columns: [\"_measurement\"])\r\n    |> distinct(column: \"_measurement\")"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": "boot-pool",
-          "value": "boot-pool"
+          "text": "tank",
+          "value": "tank"
         },
         "datasource": {
           "type": "influxdb",
           "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
         },
         "definition": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")",
-        "hide": 0,
         "includeAll": false,
         "label": "Pool",
-        "multi": false,
         "name": "pool",
         "options": [],
         "query": {
           "query": "\tfrom(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 2,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "Boot-Pool",
-          "value": "Boot-Pool"
+          "text": "Tank",
+          "value": "Tank"
         },
         "datasource": {
           "type": "influxdb",
@@ -2454,16 +2406,13 @@
         "hide": 2,
         "includeAll": false,
         "label": "Pool Title",
-        "multi": false,
         "name": "pool_title",
         "options": [],
         "query": {
           "query": "\timport \"strings\"\r\n  \r\n  from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"${host}\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"zpool_stats\")\r\n  |> filter(fn: (r) => r[\"name\"] == \"${pool}\")\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> distinct(column: \"name\")\r\n  |> map(\r\n    fn: (r) => ({\r\n      r with _value: strings.title(v: r._value)\r\n    })\r\n  ) "
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -2473,34 +2422,11 @@
     "to": "now"
   },
   "timepicker": {
-    "nowDelay": "",
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "nowDelay": ""
   },
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 134,
+  "version": 141,
   "weekStart": ""
 }
