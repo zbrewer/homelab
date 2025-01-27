@@ -9,6 +9,7 @@ services:
     depends_on:
       - mongo
     environment:
+      TIMEZONE: America/Denver
       API_ENDPOINT: https://yourspotify-backend.brew.foo
       CLIENT_ENDPOINT: https://yourspotify.brew.foo
       SPOTIFY_PUBLIC: ${SPOTIFY_CLIENT_ID}
