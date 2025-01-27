@@ -44,6 +44,10 @@
         href: https://hamclock.brew.foo
         icon: mdi-radio-tower
 
+    - Your Spotify:
+        href: https://yourspotify.brew.foo
+        icon: your-spotify
+
     - Firefox:
         href: https://firefox.brew.foo
         icon: firefox.png
