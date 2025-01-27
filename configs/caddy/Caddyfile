@@ -280,4 +280,16 @@
         handle@wavelog {
                 reverse_proxy10.0.10.31:8186
         }
+
+        # Your Spotify Backend
+        @yourspotify-backend host yourspotify-backend.brew.foo
+        handle @yourspotify-backend {
+                reverse_proxy 10.0.10.31:8081
+        }
+
+        # Your Spotify Client
+        @yourspotify host yourspotify.brew.foo
+        handle @yourspotify {
+                reverse_proxy 10.0.10.31:3003
+        }
 }
