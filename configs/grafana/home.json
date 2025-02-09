@@ -44,7 +44,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -99,7 +98,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -177,7 +176,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -267,7 +266,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -349,7 +348,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -421,7 +420,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -496,7 +495,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -571,7 +570,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -658,7 +657,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -702,6 +701,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -778,11 +778,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -842,6 +844,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -887,39 +890,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}"
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": true
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "value {domain=\"sensor\", entity_id=\"xcel_itron_5_instantaneous_demand_value\", friendly_name=\"Xcel Itron 5 Instantaneous Demand value\", name=\"W\", source=\"HA\"}"
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": true
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
             },
             "properties": [
               {
@@ -947,6 +918,30 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Server Load"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Espresso Machine Load"
+              }
+            ]
           }
         ]
       },
@@ -971,18 +966,20 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"xcel_itron_5_instantaneous_demand_value\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         },
         {
@@ -991,7 +988,16 @@
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
           "hide": false,
-          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"eaton-5px2200rt\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"output_load_percent\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"home-assistant\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"espresso_machine_electric_consumption_w\")\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
+          },
+          "hide": false,
+          "query": "import \"date\"\r\nimport \"interpolate\"\r\n\r\nfrom(bucket: \"eaton-5px2200rt\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"output_load_percent\")\r\n  |> map(fn: (r) => ({\r\n    r with _value: (float(v: r._value) * 19.2)\r\n  }))\r\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\r\n  |> interpolate.linear(every: 1m)\r\n  |> yield(name: \"mean\")",
           "refId": "B"
         }
       ],
@@ -1000,46 +1006,21 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Server Load",
-            "binary": {
-              "left": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}",
-              "operator": "*",
-              "right": "19.2"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            },
-            "replaceFields": false
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "Espresso Machine Load",
-            "binary": {
-              "left": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}",
-              "operator": "-",
-              "right": "0"
-            },
-            "mode": "binary",
-            "reduce": {
-              "include": [
-                "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
-              ],
-              "reducer": "mean"
-            },
-            "replaceFields": false
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
             "alias": "Load Without Server",
             "binary": {
-              "left": "value {domain=\"sensor\", entity_id=\"xcel_itron_5_instantaneous_demand_value\", friendly_name=\"Xcel Itron 5 Instantaneous Demand value\", name=\"W\", source=\"HA\"}",
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {domain=\"sensor\", entity_id=\"xcel_itron_5_instantaneous_demand_value\", friendly_name=\"Xcel Itron 5 Instantaneous Demand value\", name=\"W\", source=\"HA\"}"
+                }
+              },
               "operator": "-",
-              "right": "Server Load"
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "output_load_percent {agent_host=\"10.0.10.30\", host=\"eaton-5px2200rt-server-room\", name=\"snmp\"}"
+                }
+              }
             },
             "mode": "binary",
             "reduce": {
@@ -1053,14 +1034,25 @@
           "options": {
             "alias": "Base Load",
             "binary": {
-              "left": "Load Without Server",
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Load Without Server"
+                }
+              },
               "operator": "-",
-              "right": "Espresso Machine Load"
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {domain=\"sensor\", entity_id=\"espresso_machine_electric_consumption_w\", friendly_name=\"Espresso Machine Electric Consumption [W]\", name=\"W\", source=\"HA\"}"
+                }
+              }
             },
             "mode": "binary",
             "reduce": {
               "reducer": "sum"
-            }
+            },
+            "replaceFields": false
           }
         }
       ],
@@ -1083,6 +1075,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1178,11 +1171,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1249,6 +1244,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "scheme",
@@ -1320,11 +1316,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1367,9 +1365,19 @@
           "options": {
             "alias": "Upstairs Delta",
             "binary": {
-              "left": "Upstairs Average",
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Upstairs Average"
+                }
+              },
               "operator": "-",
-              "right": "value {domain=\"sensor\", entity_id=\"basement_temperature\", friendly_name=\"Basement Temperature\", name=\"°F\", source=\"HA\"}"
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {domain=\"sensor\", entity_id=\"basement_temperature\", friendly_name=\"Basement Temperature\", name=\"°F\", source=\"HA\"}"
+                }
+              }
             },
             "mode": "binary",
             "reduce": {
@@ -1398,6 +1406,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 12,
             "gradientMode": "scheme",
@@ -1468,11 +1477,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1521,6 +1532,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 12,
             "gradientMode": "scheme",
@@ -1604,11 +1616,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1640,6 +1654,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "scheme",
@@ -1698,11 +1713,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1745,9 +1762,19 @@
           "options": {
             "alias": "Inside Delta",
             "binary": {
-              "left": "Inside Average",
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Inside Average"
+                }
+              },
               "operator": "-",
-              "right": "value {domain=\"sensor\", entity_id=\"outside_environmental_sensor_temperature\", friendly_name=\"Outside Environmental Sensor Temperature\", name=\"°F\", source=\"HA\"}"
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {domain=\"sensor\", entity_id=\"outside_environmental_sensor_temperature\", friendly_name=\"Outside Environmental Sensor Temperature\", name=\"°F\", source=\"HA\"}"
+                }
+              }
             },
             "mode": "binary",
             "reduce": {
@@ -1776,6 +1803,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 12,
             "gradientMode": "scheme",
@@ -1859,11 +1887,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1879,8 +1909,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
@@ -1893,6 +1924,6 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "fdq0miajv0jy8e",
-  "version": 74,
+  "version": 81,
   "weekStart": ""
 }
