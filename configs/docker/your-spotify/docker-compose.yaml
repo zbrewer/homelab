@@ -16,6 +16,7 @@ services:
       SPOTIFY_SECRET: ${SPOTIFY_CLIENT_SECRET}
   mongo:
     container_name: mongo
+    restart: always
     image: mongo:4.4
     volumes:
       - db-data:/data/db
