@@ -292,4 +292,10 @@
         handle @yourspotify {
                 reverse_proxy 10.0.10.31:3003
         }
+
+        # Calibre Web
+        @books host books.brew.foo
+        handle @books {
+                reverse_proxy 10.0.10.31:8083
+        }
 }
