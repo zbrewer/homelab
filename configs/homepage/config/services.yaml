@@ -48,6 +48,10 @@
         href: https://yourspotify.brew.foo
         icon: your-spotify
 
+    - Calibre Web Automated:
+        href: https://books.brew.foo
+        icon: calibre-web
+
     - Firefox:
         href: https://firefox.brew.foo
         icon: firefox.png
