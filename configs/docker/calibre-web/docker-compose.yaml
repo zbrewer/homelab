@@ -1,21 +1,20 @@
 services:
-  calibre-web:
-    image: lscr.io/linuxserver/calibre-web:latest
-    container_name: calibre-web
+  calibre-web-automated:
+    image: crocodilestick/calibre-web-automated:latest
+    container_name: calibre-web-automated
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Denver
-      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
     volumes:
-      - config:/config
-      - calibre-library:/books
+      - config:/config 
+      # This is an ingest dir, NOT a library one. Anything added here will be automatically added to your library according to the settings you have configured in CWA Settings page. All files placed here are REMOVED AFTER PROCESSING
+      - /mnt/calibre-ingest:/cwa-book-ingest
+      # If you don't have an existing library, CWA will automatically create one at the bind provided here
+      - /mnt/calibre-library:/calibre-library 
     ports:
-      - 8083:8083
+      - 8083:8083 
     restart: unless-stopped
 
 volumes:
   config:
-  calibre-library:
-    external: true
