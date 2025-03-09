@@ -150,7 +150,7 @@
         widget:
           type: pihole
           url: https://pihole.brew.foo
-          version: 5 # required if running v6 or higher, defaults to 5
+          version: 6 # required if running v6 or higher, defaults to 5
           key: "<redacted>" # optional
 
 - Management:
