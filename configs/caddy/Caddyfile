@@ -298,4 +298,11 @@
         handle @books {
                 reverse_proxy 10.0.10.31:8083
         }
+
+        # Calibre Web Automated Book Downloader
+        @get-books host get-books.brew.foo
+        handle @get-books {
+                import authentik_auth
+                reverse_proxy 10.0.10.31:8084
+        }
 }
