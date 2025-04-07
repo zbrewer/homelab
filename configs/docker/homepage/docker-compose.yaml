@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     ports:
       - 3030:3000
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=10.0.10.31:3030,homepage.brew.foo
     volumes:
       - /home/zbrewer/homepage/config:/app/config
       - /home/zbrewer/homepage/icons:/app/public/icons
