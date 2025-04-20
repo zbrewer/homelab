@@ -99,17 +99,6 @@
 
 
 - Infrastructure:
-    - Hydrogen:
-        href: https://hydrogen.brew.foo
-        description: Hydrogen Proxmox host
-        icon: proxmox.png
-        widget:
-          type: proxmox
-          url: https://hydrogen.brew.foo
-          username: "<redacted>"
-          password: "<redacted>"
-          # node: pve-1 # optional
-
     - Helium:
         href: https://helium.brew.foo
         description: Helium Proxmox host
@@ -120,6 +109,16 @@
           username: "<redacted>"
           password: "<redacted>"
           # node: pve-1 # optional
+
+    - Pi-Hole:
+        href: https://pihole.brew.foo
+        description: Ad-blocking DNS server
+        icon: pi-hole.png
+        widget:
+          type: pihole
+          url: https://pihole.brew.foo
+          version: 6 # required if running v6 or higher, defaults to 5
+          key: "<redacted>" # optional
 
     - TrueNAS:
         href: https://truenas.brew.foo
@@ -146,16 +145,6 @@
           key: "<redacted>" # not required if using username / password
           enablePools: true # optional, defaults to false
           nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
-
-    - Pi-Hole:
-        href: https://pihole.brew.foo
-        description: Ad-blocking DNS server
-        icon: pi-hole.png
-        widget:
-          type: pihole
-          url: https://pihole.brew.foo
-          version: 6 # required if running v6 or higher, defaults to 5
-          key: "<redacted>" # optional
 
 - Management:
     - Guacamole:
