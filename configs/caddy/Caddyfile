@@ -18,18 +18,6 @@
                 dns cloudflare <api-key>
                 resolvers 1.1.1.1
         }
-
-
-        # Network proxmox management UI
-        @hydrogen host hydrogen.brew.foo
-        handle @hydrogen {
-                reverse_proxy https://10.0.10.10:8006 {
-                        transport http {
-                                tls
-                                tls_insecure_skip_verify
-                        }
-                }
-        }
         
         # Helium proxmox node
         @helium host helium.brew.foo
