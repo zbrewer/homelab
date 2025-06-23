@@ -14,6 +14,9 @@ networking:
       ansible_user: root
 hypervisors:
   hosts:
+    hydrogen:
+      ansible_host: 10.0.10.40
+      ansible_user: root
     helium:
       ansible_host: 10.0.10.20
       ansible_user: root
