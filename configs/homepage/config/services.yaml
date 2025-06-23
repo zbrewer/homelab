@@ -99,6 +99,17 @@
 
 
 - Infrastructure:
+    - Hydrogen:
+        href: https://hydrogen.brew.foo
+        description: Hydrogen Proxmox host
+        icon: proxmox.png
+        widget:
+          type: proxmox
+          url: https://hydrogen.brew.foo
+          username: "<redacted>"
+          password: "<redacted>"
+          # node: pve-1 # optional
+
     - Helium:
         href: https://helium.brew.foo
         description: Helium Proxmox host
