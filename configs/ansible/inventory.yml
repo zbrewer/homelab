@@ -9,6 +9,9 @@ networking:
     pihole:
       ansible_host: 10.0.10.11
       ansible_user: root
+    pihole-backup:
+      ansible_host: 10.0.10.12
+      ansible_user: root
     caddy:
       ansible_host: 10.0.10.33
       ansible_user: root
