@@ -131,6 +131,16 @@
           version: 6 # required if running v6 or higher, defaults to 5
           key: "<redacted>" # optional
 
+    - Pi-Hole Backup:
+        href: https://pihole-backup.brew.foo
+        description: Backup Ad-blocking DNS server
+        icon: pi-hole.png
+        widget:
+          type: pihole
+          url: https://pihole-backup.brew.foo
+          version: 6 # required if running v6 or higher, defaults to 5
+          key: "<redacted>" # optional
+
     - TrueNAS:
         href: https://truenas.brew.foo
         description: Primary storage server
