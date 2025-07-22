@@ -132,6 +132,13 @@
                 redir / /admin{uri}
                 reverse_proxy 10.0.10.11
         }
+
+        # Backup Pihole admin
+        @pihole-backup host pihole-backup.brew.foo
+        handle @pihole-backup {
+                redir / /admin{uri}
+                reverse_proxy 10.0.10.12
+        }
         
         # Portainer
         @portainer host portainer.brew.foo
