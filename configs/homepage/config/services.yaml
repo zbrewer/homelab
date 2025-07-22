@@ -133,7 +133,7 @@
 
     - Pi-Hole Backup:
         href: https://pihole-backup.brew.foo
-        description: Backup Ad-blocking DNS server
+        description: Backup ad-blocking DNS server
         icon: pi-hole.png
         widget:
           type: pihole
