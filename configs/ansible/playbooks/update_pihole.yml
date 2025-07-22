@@ -1,6 +1,6 @@
 ---
 
-- hosts: pihole
+- hosts: pihole, pihole-backup
   become: yes
   vars_files: ~/ansible/vault_vars.yml
   tasks:
