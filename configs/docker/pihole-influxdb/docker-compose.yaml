@@ -13,3 +13,18 @@ services:
       - "INFLUXDB_ORG=Brewer"
       - "INFLUXDB_TOKEN=<token>"
       - "INFLUXDB_BUCKET=pihole"
+
+  pihole-backup-influxdb:
+    image: avojak/pihole-influxdb:latest
+    container_name: pihole-backup-influxdb
+    restart: unless-stopped
+    environment:
+      - "PIHOLE_ALIAS=pihole-backup"
+      - "PIHOLE_ADDRESS=http://10.0.10.12"
+      - "PIHOLE_PASSWORD=<app-password>"
+      - "PIHOLE_NUM_TOP_ITEMS=25"
+      - "PIHOLE_NUM_TOP_CLIENTS=25"
+      - "INFLUXDB_ADDRESS=http://10.0.10.31:8086"
+      - "INFLUXDB_ORG=Brewer"
+      - "INFLUXDB_TOKEN=<token>"
+      - "INFLUXDB_BUCKET=pihole"
