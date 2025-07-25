@@ -121,7 +121,9 @@
             "includeByName": {},
             "indexByName": {},
             "renameByName": {
-              "blocking {alias=\"pihole\", hostname=\"pihole\"}": "Blocking"
+              "blocking {alias=\"pihole\", hostname=\"10.0.10.11\"}": "Blocking",
+              "blocking {alias=\"pihole\", hostname=\"pihole\"}": "Blocking",
+              "blocking {alias=\"pihole-backup\", hostname=\"10.0.10.12\"}": "Blocking"
             }
           }
         }
@@ -174,8 +176,8 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
+        "textMode": "value_and_name",
+        "wideLayout": false
       },
       "pluginVersion": "12.0.1+security-01",
       "targets": [
@@ -237,8 +239,8 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
+        "textMode": "value_and_name",
+        "wideLayout": false
       },
       "pluginVersion": "12.0.1+security-01",
       "targets": [
@@ -301,8 +303,8 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
+        "textMode": "value_and_name",
+        "wideLayout": false
       },
       "pluginVersion": "12.0.1+security-01",
       "targets": [
@@ -364,8 +366,8 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
+        "textMode": "value_and_name",
+        "wideLayout": false
       },
       "pluginVersion": "12.0.1+security-01",
       "targets": [
@@ -425,8 +427,9 @@
           "values": false
         },
         "showPercentChange": false,
+        "text": {},
         "textMode": "value_and_name",
-        "wideLayout": true
+        "wideLayout": false
       },
       "pluginVersion": "12.0.1+security-01",
       "targets": [
@@ -449,7 +452,30 @@
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "last_update {alias=\"pihole\", hostname=\"pihole\"}"
+                  "options": "last_update {alias=\"pihole\", hostname=\"10.0.10.11\"}"
+                }
+              },
+              "operator": "*",
+              "right": {
+                "fixed": "1000"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "last_update_time_backup",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "last_update {alias=\"pihole-backup\", hostname=\"10.0.10.12\"}"
                 }
               },
               "operator": "*",
@@ -470,7 +496,10 @@
             "includeByName": {},
             "indexByName": {},
             "renameByName": {
-              "last_update_time": "Time Since Gravity Updated"
+              "last_update {alias=\"pihole\", hostname=\"10.0.10.11\"}": "",
+              "last_update {alias=\"pihole-backup\", hostname=\"10.0.10.12\"}": "",
+              "last_update_time": "Time Since Gravity Updated",
+              "last_update_time_backup": "Time Since Gravity Updated"
             }
           }
         }
@@ -1313,5 +1342,5 @@
   "timezone": "",
   "title": "Pi-hole",
   "uid": "zLZsJ9v4k",
-  "version": 1
+  "version": 8
 }
