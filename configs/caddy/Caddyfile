@@ -282,7 +282,7 @@
         }
 
         #Wavelog
-        @waveloghostwavelog.brew.foo
+        @wavelog host wavelog.brew.foo
         handle@wavelog {
                 reverse_proxy10.0.10.31:8186
         }
