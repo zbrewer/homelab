@@ -13,6 +13,37 @@
         }
 }
 
+# Redirect short links to the FQDN. See:
+# https://caddy.community/t/err-ssl-protocol-error-when-using-search-domain-to-complete-domain-name/10283
+
+http://hydrogen,
+http://helium,
+http://truenas,
+http://codeserver,
+http://pihole,
+http://portainer,
+http://grafana,
+http://guacamole,
+http://firefox,
+http://wol,
+http://authentik,
+http://eaton,
+http://haos,
+http://arm,
+http://homepage,
+http://uptime,
+http://todo,
+http://speedtest,
+http://budget,
+http://wiki,
+http://hamclock,
+http://wavelog,
+http://books,
+http://get-books,
+http://s {
+        redir https://{host}.brew.foo{uri}
+}
+
 *.brew.foo {
         tls {
                 dns cloudflare <api-key>
