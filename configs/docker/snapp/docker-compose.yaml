@@ -1,0 +1,23 @@
+services:
+  snapp:
+    image: uraniadev/snapp:0.9-rc-020
+    container_name: snapp
+    ports:
+      - 3004:3000
+    restart: unless-stopped
+    volumes:
+      - /home/zbrewer/snapp/db/prisma/db.sqlite:/app/dbschema/sqlite/prisma/db.sqlite
+    environment:
+      DATABASE_URL: "file:./db.sqlite"
+      DATABASE_PROVIDER: sqlite  # mysql | sqlite | postgres
+      TOKEN_SECRET: ${TOKEN_SECRET}  # openssl rand -base64 32
+      ORIGIN: https://s.brew.foo
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      AUTH_PROVIDERS: AUTHENTIK
+      AUTH_AUTHENTIK_CLIENT_ID: ${AUTHENTIK_CLIENT_ID}
+      AUTH_AUTHENTIK_CLIENT_SECRET: ${AUTHENTIK_CLIENT_SECRET}
+      AUTH_AUTHENTIK_ISSUER: https://authentik.brew.foo/application/o/snapp-url-shortener/
+      DISABLED_EMAIL_AND_PASSWORD: true
+      ENABLE_SIGNUP: true
+      VTAPI_KEY: ${VTAPI_KEY}
