@@ -14,10 +14,14 @@ services:
       ORIGIN: https://s.brew.foo
       ADMIN_USERNAME: admin
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-      AUTH_PROVIDERS: AUTHENTIK
-      AUTH_AUTHENTIK_CLIENT_ID: ${AUTHENTIK_CLIENT_ID}
-      AUTH_AUTHENTIK_CLIENT_SECRET: ${AUTHENTIK_CLIENT_SECRET}
-      AUTH_AUTHENTIK_ISSUER: https://authentik.brew.foo/application/o/snapp-url-shortener/
-      DISABLED_EMAIL_AND_PASSWORD: true
-      ENABLE_SIGNUP: true
-      VTAPI_KEY: ${VTAPI_KEY}
+      # VTAPI_KEY: ${VTAPI_KEY}  # Optional - check the reputation of links before creating short links
+      # The variables below are for setting up SSO through an OIDC provider. The example below is for Authentic but various providers
+      # can be used. Replace `AUTHENTIK` in the `CLIENT_ID`, `CLIENT_SECRET`, and `ISSUER` with the provider name specified in
+      # `AUTH_PROVIDERS`. Multiple values can be specified in `AUTH_PROVIDERS` to support multiple SSO providers, each with their own
+      # set of variables.
+      # AUTH_PROVIDERS: AUTHENTIK
+      # AUTH_AUTHENTIK_CLIENT_ID: ${AUTHENTIK_CLIENT_ID}
+      # AUTH_AUTHENTIK_CLIENT_SECRET: ${AUTHENTIK_CLIENT_SECRET}
+      # AUTH_AUTHENTIK_ISSUER: https://authentik.brew.foo/application/o/snapp-url-shortener/
+      # DISABLED_EMAIL_AND_PASSWORD: true  # This can be disabled once a user has been added through your ODIC provider and made an admin
+      # ENABLE_SIGNUP: true   # Necessary for ODIC to work
