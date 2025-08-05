@@ -24,6 +24,10 @@
             - state: sensor.living_room_current_temperature
               label: Inside Temp
 
+    - Snapp:
+        href: https://s.brew.foo
+        icon: mdi-link-box-variant
+
     - Code Server:
         href: https://codeserver.brew.foo
         icon: code-server.png
