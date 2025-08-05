@@ -26,7 +26,7 @@
 
     - Snapp:
         href: https://s.brew.foo
-        icon: mdi-link-box-variant
+        icon: /icons/snapp.png
 
     - Code Server:
         href: https://codeserver.brew.foo
