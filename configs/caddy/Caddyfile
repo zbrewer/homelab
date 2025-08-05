@@ -311,4 +311,11 @@
                 import authentik_auth
                 reverse_proxy 10.0.10.31:8084
         }
+
+        # Snapp URL Shortener
+        @snapp host s.brew.foo
+        handle @snapp {
+                reverse_proxy 10.0.10.31:3004
+                redir / /dashboard
+        }
 }
