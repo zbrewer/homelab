@@ -19,10 +19,19 @@
 http://hydrogen,
 http://helium,
 http://truenas,
+http://truenas-ipmi,
+http://truenas-backup,
+http://truecommand,
+http://unifi,
+http://omada,
 http://codeserver,
+http://jekyll,
 http://pihole,
+http://pihole-backup,
 http://portainer,
 http://grafana,
+http://influxdb,
+http://tautulli,
 http://guacamole,
 http://firefox,
 http://wol,
@@ -30,6 +39,8 @@ http://authentik,
 http://eaton,
 http://haos,
 http://arm,
+http://mesh-mini,
+http://wyze,
 http://homepage,
 http://uptime,
 http://todo,
@@ -38,10 +49,25 @@ http://budget,
 http://wiki,
 http://hamclock,
 http://wavelog,
+http://yourspotify,
 http://books,
 http://get-books,
 http://s {
         redir https://{host}.brew.foo{uri}
+}
+
+# Specific short links that are not the same as the host part of their FQDN:
+
+http://code {
+        redir https://codeserver.brew.foo{uri}
+}
+
+http://guac {
+        redir https://guacamole.brew.foo{uri}
+}
+
+http://home {
+        redir https://homepage.brew.foo{uri}
 }
 
 *.brew.foo {
