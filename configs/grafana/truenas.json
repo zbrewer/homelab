@@ -52,8 +52,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -87,7 +86,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -114,8 +113,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -149,7 +147,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -176,8 +174,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -211,7 +208,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -238,8 +235,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -273,7 +269,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -303,8 +299,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -344,7 +339,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -370,8 +365,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -403,7 +397,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -433,8 +427,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -474,7 +467,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -526,8 +519,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -564,7 +556,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -648,8 +640,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -678,11 +669,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "da0",
@@ -778,8 +770,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -835,11 +826,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "ARC Hits",
@@ -935,8 +927,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1000,11 +991,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -1088,8 +1080,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1119,11 +1110,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "RX: $tag_resource",
@@ -1225,8 +1217,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1294,11 +1285,12 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -1360,8 +1352,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1438,11 +1429,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -1511,8 +1503,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "yellow",
@@ -1535,7 +1526,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdb"
+                "value": "sdd"
               }
             ]
           },
@@ -1547,31 +1538,31 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdd"
+                "value": "sdg"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL ZDHBCJEL truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL ZDHBCJEL truenas-backup"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sda"
+                "value": "sde"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 ZDHBCKH5 truenas"
+              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 ZDHBCKH5 truenas-backup"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdf"
+                "value": "sdc"
               }
             ]
           },
@@ -1583,7 +1574,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdg"
+                "value": "sdf"
               }
             ]
           },
@@ -1610,6 +1601,54 @@
                 "value": "sdb"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "9JG2UX4G"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "9JGK57NT"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "9JH158RT"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sde"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "9JH16J8T"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
           }
         ]
       },
@@ -1633,11 +1672,12 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1656,7 +1696,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"ZDHBCD6Y\", \"ZDHBCJEL\", \"ZDHBCKH5\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\", \"ZDHBCD6Y\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\", \"ZDHBCJEL\", \"ZDHBCKH5\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1743,8 +1783,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -1767,7 +1806,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sde"
+                "value": "sdj"
               }
             ]
           },
@@ -1779,7 +1818,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdc"
+                "value": "sdk"
               }
             ]
           },
@@ -1791,7 +1830,31 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "sdc"
+                "value": "sdd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18231CC4B59F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdi"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "18471F7DF9F3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdh"
               }
             ]
           }
@@ -1817,11 +1880,12 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1840,7 +1904,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"S1ATNSAD906882M\", \"S21TNXAG607043P\"]\r\ntruenas_backup_drives = [\"BTHV701404A4200MGN\"]\r\n\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"S1ATNSAD906882M\", \"S21TNXAG607043P\", \"18231CC4B59F\", \"18471F7DF9F3\"]\r\ntruenas_backup_drives = [\"BTHV701404A4200MGN\"]\r\n\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1922,8 +1986,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1953,11 +2016,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2085,8 +2149,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2115,11 +2178,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "alias": "da0",
@@ -2132,7 +2196,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdd\", \"sdf\", \"sdg\"]\ntruenas_boot_pool_drives = [\"sdc\", \"sde\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdc\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdc\", \"sdd\", \"sde\"]\ntruenas_boot_pool_drives = [\"sdj\", \"sdk\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdd\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2221,8 +2285,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2257,11 +2320,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.5",
       "targets": [
         {
           "datasource": {
@@ -2279,7 +2343,7 @@
   ],
   "preload": false,
   "refresh": "10s",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -2350,8 +2414,8 @@
       },
       {
         "current": {
-          "text": "eno3",
-          "value": "eno3"
+          "text": "br_1712f69de3c2",
+          "value": "br_1712f69de3c2"
         },
         "datasource": {
           "type": "influxdb",
@@ -2427,6 +2491,5 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 141,
-  "weekStart": ""
+  "version": 149
 }
