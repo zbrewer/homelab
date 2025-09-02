@@ -1,0 +1,41 @@
+*.backup.brew.foo {
+        tls {
+                dns cloudflare <api_key>
+                resolvers 1.1.1.1
+        }
+
+        # Hydrogen proxmox node
+        @hydrogen host hydrogen.backup.brew.foo
+        handle @hydrogen {
+                reverse_proxy https://10.0.10.40:8006 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
+        # Helium proxmox node
+        @helium host helium.backup.brew.foo
+        handle @helium {
+                reverse_proxy https://10.0.10.20:8006 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
+        # Guacamole
+        @guacamole host guacamole.backup.brew.foo
+        handle @guacamole {
+                redir / /guacamole{uri}
+                reverse_proxy 10.0.10.31:8080
+        }
+
+        # Eaton Network Card-MS on 5PX2200RT
+        @eaton host eaton.backup.brew.foo
+        handle @eaton {
+                reverse_proxy 10.0.10.30
+        }
+}
