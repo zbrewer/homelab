@@ -15,6 +15,9 @@ networking:
     caddy:
       ansible_host: 10.0.10.33
       ansible_user: root
+    caddy-backup:
+      ansible_host: 10.0.10.35
+      ansible_user: root
 hypervisors:
   hosts:
     hydrogen:
