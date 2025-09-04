@@ -4,6 +4,13 @@
                 resolvers 1.1.1.1
         }
 
+        # Test endpoint for Caddy health check
+        @health-check host test.backup.brew.foo
+        handle @health-check {
+                respond /health-check 204
+                respond 404
+        }
+
         # Hydrogen proxmox node
         @hydrogen host hydrogen.backup.brew.foo
         handle @hydrogen {
