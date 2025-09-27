@@ -22,8 +22,9 @@ auth:
   openid:
     enabled: true
     providers:
-      # The name of the provider as it will appear in the frontend
-      - name: "Authentik"
+      authentik:
+        # The name of the provider as it will appear in the frontend
+        name: "Authentik"
         # The auth url to send users to if they want to authenticate using OpenID Connect.
         authurl: https://authentik.brew.foo/application/o/vikunja/
         # The client ID used to authenticate Vikunja at the OpenID Connect provider.
