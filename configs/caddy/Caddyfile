@@ -23,7 +23,6 @@ http://truenas-ipmi,
 http://truenas-backup,
 http://truecommand,
 http://unifi,
-http://omada,
 http://codeserver,
 http://jekyll,
 http://pihole,
@@ -158,18 +157,6 @@ http://home {
         @unifi host unifi.brew.foo
         handle @unifi {
                 reverse_proxy https://10.0.99.3:8443 {
-                        transport http {
-                                tls
-                                tls_insecure_skip_verify
-                        }
-
-                }
-        }
-
-        # Omada controller web UI
-        @omada host omada.brew.foo
-        handle @omada {
-                reverse_proxy https://10.0.99.5:8043 {
                         transport http {
                                 tls
                                 tls_insecure_skip_verify
