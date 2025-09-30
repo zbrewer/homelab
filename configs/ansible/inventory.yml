@@ -3,9 +3,6 @@ networking:
     unifi:
       ansible_host: 10.0.99.3
       ansible_user: root
-    omada:
-      ansible_host: 10.0.99.5
-      ansible_user: root
     pihole:
       ansible_host: 10.0.10.11
       ansible_user: root
