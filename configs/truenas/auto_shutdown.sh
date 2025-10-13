@@ -17,7 +17,7 @@ echo "$current_scrub_tasks scrub(s) in progress"
 
 # Check for running or failed (non-FINISHED) replication tasks
 running_replication_tasks=$(cli -m csv -c "task replication query state" | grep -c "RUNNING")
-failed_replication_tasks=$(cli -m csv -c "task replication query state" | grep -c "FAILED")
+failed_replication_tasks=$(cli -m csv -c "task replication query state" | grep -c "ERROR")
 echo "$running_replication_tasks running and $failed_replication_tasks failed replication task(s)"
 
 if [[ (( $failed_replication_tasks > 0 )) ]]; then
