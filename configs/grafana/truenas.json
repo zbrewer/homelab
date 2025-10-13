@@ -86,7 +86,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -147,7 +147,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -208,7 +208,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -269,7 +269,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -339,7 +339,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -397,7 +397,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -467,7 +467,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -556,7 +556,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -674,7 +674,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "da0",
@@ -687,7 +687,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.disk_busy\\.[a-z]{3}\\.busy/)\n  |> map(\n        fn: (r) => ({r with _field: r._measurement}),\n    )\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.truenas_disk_stats\\.busy\\._serial_lunid_[^_]*_[^_]*\\.busy/)\n  |> map(\n        fn: (r) => ({r with _field: r._measurement}),\n    )\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -714,7 +714,14 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "/^scale\\.truenas\\.disk_busy\\.([a-z]{3})\\.busy.*/",
+            "regex": "/^scale\\.truenas\\.truenas_disk_stats\\.busy\\._serial_lunid_([^_]*)_[^_]*\\.busy/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^ ]*) .*",
             "renamePattern": "$1"
           }
         }
@@ -784,7 +791,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/scale\\.truenas\\.zfs\\.hits\\.hits.*/"
+              "options": "/scale\\.truenas\\.truenas\\_arcstats\\.l2hit\\_p\\.l2hit.*/"
             },
             "properties": [
               {
@@ -796,7 +803,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/scale\\.truenas\\.zfs\\.hits\\.misses.*/"
+              "options": "/scale\\.truenas\\.truenas\\_arcstats\\.l2miss\\_p\\.l2miss.*/"
             },
             "properties": [
               {
@@ -831,7 +838,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "ARC Hits",
@@ -856,7 +863,7 @@
           "measurement": "arcstat_ratio_arc-hits",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.hits.hits\" or r[\"_measurement\"] == \"scale.truenas.zfs.hits.misses\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.truenas_arcstats.l2hit_p.l2hit\" or r[\"_measurement\"] == \"scale.truenas.truenas_arcstats.l2miss_p.l2miss\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -996,7 +1003,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -1115,7 +1122,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "RX: $tag_resource",
@@ -1201,7 +1208,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1225,42 +1232,78 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "bytes"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/scale\\.truenas\\.mem\\.committed\\.Committed_AS.*/"
+              "options": "/scale\\.truenas\\.truenas\\_meminfo\\.available\\.available.*/"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "committed"
+                "value": "available"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_without_services"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value {host=\"truenas\", name=\"scale.truenas.truenas_meminfo.total.total\"}"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
               }
             ]
           },
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/scale\\.truenas\\.system\\.ram\\.free.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "free"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/scale\\.truenas\\.zfs\\.arc_size\\.arcsz.*/"
+              "options": "/scale\\.truenas\\.truenas\\_arcstats\\.size\\.size.*/"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "arc"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value {host=\"truenas-backup\", name=\"scale.truenas.truenas_meminfo.total.total\"}"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
               }
             ]
           }
@@ -1290,18 +1333,120 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.zfs.arc_size.arcsz\" or r[\"_measurement\"] == \"scale.truenas.system.ram.free\" or r[\"_measurement\"] == \"scale.truenas.mem.committed.Committed_AS\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.truenas_arcstats.size.size\" or r[\"_measurement\"] == \"scale.truenas.truenas_meminfo.available.available\" or r[\"_measurement\"] == \"scale.truenas.truenas_meminfo.total.total\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
       "title": "Memory Usage",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "usage_without_services",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas\", name=\"scale.truenas.truenas_arcstats.size.size\"}"
+                }
+              },
+              "operator": "+",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas\", name=\"scale.truenas.truenas_meminfo.available.available\"}"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "services",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas\", name=\"scale.truenas.truenas_meminfo.total.total\"}"
+                }
+              },
+              "operator": "-",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "usage_without_services"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "usage_without_services",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas-backup\", name=\"scale.truenas.truenas_arcstats.size.size\"}"
+                }
+              },
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas-backup\", name=\"scale.truenas.truenas_meminfo.available.available\"}"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "services",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "value {host=\"truenas-backup\", name=\"scale.truenas.truenas_meminfo.total.total\"}"
+                }
+              },
+              "operator": "-",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "usage_without_services"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1365,20 +1510,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "/scale\\.truenas\\.system\\.cpu\\.nice.*/"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "nice"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/scale\\.truenas\\.system\\.cpu\\.guest.*/"
+              "id": "byName",
+              "options": "usage_guest"
             },
             "properties": [
               {
@@ -1389,25 +1522,97 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "/scale\\.truenas\\.system\\.cpu\\.user.*/"
+              "id": "byName",
+              "options": "usage_guest_nice"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "user"
+                "value": "guest_nice"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "/scale\\.truenas\\.system\\.cpu\\.system.*/"
+              "id": "byName",
+              "options": "usage_iowait"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "iowait"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_irq"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "interrupts"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_nice"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "nice"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_softirq"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "soft_interrupts"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_steal"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "steal"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_system"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "system"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_user"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "user"
               }
             ]
           }
@@ -1423,8 +1628,13 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1434,7 +1644,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -1442,7 +1652,7 @@
             "uid": "7XCiuTa7z"
           },
           "hide": false,
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"scale.truenas.system.cpu.nice\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.guest\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.system\" or r[\"_measurement\"] == \"scale.truenas.system.cpu.user\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_guest\" or r[\"_field\"] == \"usage_system\" or r[\"_field\"] == \"usage_user\" or r[\"_field\"] == \"usage_nice\" or r[\"_field\"] == \"usage_iowait\" or r[\"_field\"] == \"usage_guest_nice\" or r[\"_field\"] == \"usage_irq\" or r[\"_field\"] == \"usage_softirq\" or r[\"_field\"] == \"usage_steal\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"cpu-total\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1517,140 +1727,7 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.9JG4DJKT.9JG4DJKT 9JG4DJKT truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCD6Y.ZDHBCD6Y ZDHBCD6Y truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCJEL.ZDHBCJEL ZDHBCJEL truenas-backup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBCKH5.ZDHBCKH5 ZDHBCKH5 truenas-backup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZDHBDJS1.ZDHBDJS1 ZDHBDJS1 truenas"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZX213EF4.ZX213EF4 ZX213EF4 truenas-backup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "scale.truenas.smart_log_smart.disktemp.ZX20SPDB.ZX20SPDB ZX20SPDB truenas-backup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "9JG2UX4G"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "9JGK57NT"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "9JH158RT"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "9JH16J8T"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1677,7 +1754,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1727,6 +1804,15 @@
         }
       ],
       "title": "HDD Temps",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^ ]+) .*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1797,68 +1883,7 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "S1ATNSAD906882M"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdj"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "S21TNXAG607043P"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdk"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "BTHV701404A4200MGN truenas-backup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "18231CC4B59F"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdi"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "18471F7DF9F3"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdh"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1885,7 +1910,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1935,6 +1960,15 @@
         }
       ],
       "title": "SSD Temps",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^ ]+) .*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1953,6 +1987,8 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 90,
+            "axisSoftMin": 40,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
@@ -1965,6 +2001,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -2021,7 +2060,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2040,7 +2079,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.cputemp\\.temperatures\\.[0-9]+/)\r\n  |> map(\r\n        fn: (r) => ({r with _field: r._measurement}),\r\n    )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /scale\\.truenas\\.cputemp\\.temperatures\\.cpu[0-9]+/)\r\n  |> map(\r\n        fn: (r) => ({r with _field: r._measurement}),\r\n    )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2081,7 +2120,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "/^scale\\.truenas\\.cputemp\\.temperatures\\.([0-9]+).*/",
+            "regex": "/^scale\\.truenas\\.cputemp\\.temperatures\\.cpu([0-9]+).*/",
             "renamePattern": "core $1"
           }
         }
@@ -2183,7 +2222,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "alias": "da0",
@@ -2196,7 +2235,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"sda\", \"sdb\", \"sdc\", \"sdd\", \"sde\"]\ntruenas_boot_pool_drives = [\"sdj\", \"sdk\"]\ntruenas_backup_tank_drives = [\"sda\", \"sdb\"]\ntruenas_backup_boot_pool_drives = [\"sdd\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.disk\\..*/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /^[^\\.]+/, v: r._field)\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\"]\ntruenas_boot_pool_drives = [\"S21TNXAG607043P\", \"S1ATNSAD906882M\"]\ntruenas_backup_tank_drives = [\"ZX20SPDB\", \"ZX213EF4\"]\ntruenas_backup_boot_pool_drives = [\"BTHV701404A4200MGN\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.reads$/ or r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.writes$/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^_serial_lunid_[^_]+/, v: r._field))\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> map(fn: (r) => ({\n    r with _value:\n      if (regexp.findString(r: /[^\\.]+$/, v: r._field) == \"reads\") then -r._value\n      else r._value\n  }))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2223,14 +2262,21 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "/.*([a-z]{3})\\.(read)s.*/",
+            "regex": "/_serial_lunid_([^\\_]+)[^\\.]+\\.(reads)/",
             "renamePattern": "$1 $2"
           }
         },
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "/.*([a-z]{3})\\.(write)s.*/",
+            "regex": "/_serial_lunid_([^\\_]+)[^\\.]+\\.(writes)/",
+            "renamePattern": "$1 $2"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^ ]+) ([^ ]+) ([^ ]+)",
             "renamePattern": "$1 $2"
           }
         }
@@ -2325,7 +2371,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "11.6.6",
       "targets": [
         {
           "datasource": {
@@ -2393,8 +2439,8 @@
       },
       {
         "current": {
-          "text": "truenas",
-          "value": "truenas"
+          "text": "truenas-backup",
+          "value": "truenas-backup"
         },
         "datasource": {
           "type": "influxdb",
@@ -2414,8 +2460,8 @@
       },
       {
         "current": {
-          "text": "br_1712f69de3c2",
-          "value": "br_1712f69de3c2"
+          "text": "br_c1e87e169875",
+          "value": "br_c1e87e169875"
         },
         "datasource": {
           "type": "influxdb",
@@ -2491,5 +2537,5 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 149
+  "version": 172
 }
