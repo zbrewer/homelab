@@ -18,6 +18,7 @@
 
 http://hydrogen,
 http://helium,
+http://helium-oob,
 http://truenas,
 http://truenas-ipmi,
 http://truenas-backup,
@@ -97,6 +98,17 @@ http://home {
         @helium host helium.brew.foo
         handle @helium {
                 reverse_proxy https://10.0.10.20:8006 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
+        # Comet PoE IP KVM for Helium Proxmox Node
+        @helium host helium-oob.brew.foo
+        handle @helium-oob {
+                reverse_proxy https://10.0.99.22 {
                         transport http {
                                 tls
                                 tls_insecure_skip_verify
