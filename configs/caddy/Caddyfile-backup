@@ -33,6 +33,17 @@
                 }
         }
 
+        # Comet PoE IP KVM for Helium Proxmox Node
+        @helium host helium-oob.backup.brew.foo
+        handle @helium-oob {
+                reverse_proxy https://10.0.99.22 {
+                        transport http {
+                                tls
+                                tls_insecure_skip_verify
+                        }
+                }
+        }
+
         # Guacamole
         @guacamole host guacamole.backup.brew.foo
         handle @guacamole {
