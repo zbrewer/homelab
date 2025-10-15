@@ -218,6 +218,10 @@
         href: https://eaton.brew.foo
         icon: /icons/eaton.png
 
+    - Helium IP KVM:
+        href: https://helium-oob.brew.foo
+        icon: si-gldotinet-#636363
+
     - Mesh Commander:
         href: https://mesh-mini.brew.foo
         icon: meshcentral.png
