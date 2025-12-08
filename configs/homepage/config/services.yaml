@@ -240,3 +240,6 @@
         description: Central TrueNAS management interface
         icon: truenas.png
 
+    - Homebridge:
+        href: https://homebridge.brew.foo
+        icon: homebridge
