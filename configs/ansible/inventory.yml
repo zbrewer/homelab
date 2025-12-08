@@ -72,7 +72,7 @@ other:
     dell-idrac-power-manager:
       ansible_host: 10.0.99.221
       ansible_user: root
-    homekit:
+    homebridge:
       ansible_host: 10.0.101.11
       ansible_user: root
 test:
