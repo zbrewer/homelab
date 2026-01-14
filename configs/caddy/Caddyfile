@@ -53,6 +53,7 @@ http://yourspotify,
 http://books,
 http://get-books,
 http://homebridge,
+http://pdf,
 http://s {
         redir https://{host}.brew.foo{uri}
 }
@@ -387,5 +388,11 @@ http://home {
         @homebridge host homebridge.brew.foo
         handle @homebridge {
                 reverse_proxy 10.0.101.11:8581
+        }
+
+        # Bento PDF
+        @pdf host pdf.brew.foo
+        handle @pdf {
+                reverse_proxy 10.0.10.31:8085
         }
 }
