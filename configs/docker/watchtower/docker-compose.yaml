@@ -12,7 +12,7 @@ services:
       # Settings for notifications
       WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${NOTIFICATIONS_HOSTNAME}
       # Additional notification URLs can be added to this list (space separated), if desired.
-      # See https://containrrr.dev/watchtower/notifications/#shoutrrr_notifications for instructions.
+      # See https://watchtower.nickfedor.com/v1.13.1/configuration/arguments/#notification_url for instructions.
       # See https://containrrr.dev/shoutrrr/v0.8/services/overview/ for a list of available options.
       # Email URL:
       # smtp://${EMAIL_SENDER}:${EMAIL_SENDER_PASS}@smtp.gmail.com:465/?from=${EMAIL_SENDER}&to=${DEST_EMAIL}&fromName=Shoutrrr
