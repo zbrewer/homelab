@@ -58,7 +58,7 @@
 
     - Calibre Web Automated Book Downloader:
         href: https://get-books.brew.foo
-        icon: sh-cwa-book-downloader
+        icon: sh-calibre-web-automated-book-downloader
 
     - Firefox:
         href: https://firefox.brew.foo
