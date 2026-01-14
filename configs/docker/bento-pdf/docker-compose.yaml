@@ -1,0 +1,8 @@
+services:
+  bentopdf:
+    # Simple mode. See https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md
+    image: bentopdf/bentopdf-simple:latest
+    container_name: bentopdf
+    ports:
+      - '8085:8080'
+    restart: unless-stopped
