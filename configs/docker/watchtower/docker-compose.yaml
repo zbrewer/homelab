@@ -1,7 +1,6 @@
-version: "3"
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: nickfedor/watchtower
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -10,8 +9,6 @@ services:
       WATCHTOWER_CLEANUP: true
       # Schedule definition. Leaving this off will default to using a poll interval of 24hrs. See https://containrrr.dev/watchtower/arguments/#poll_interval.
       WATCHTOWER_SCHEDULE: "0 0 5 * * SAT"  # Run every Saturday at 5:00am
-      # Fix "Breaking" change from Docker v29 (API 1.44 mandatory)
-      DOCKER_API_VERSION: 1.44
       # Settings for notifications
       WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${NOTIFICATIONS_HOSTNAME}
       # Additional notification URLs can be added to this list (space separated), if desired.
