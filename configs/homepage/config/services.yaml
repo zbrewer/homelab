@@ -48,6 +48,10 @@
         href: https://hamclock.brew.foo
         icon: mdi-radio-tower
 
+    - Bento PDF:
+        href: https://pdf.brew.foo
+        icon: sh-bentopdf-light
+
     - Your Spotify:
         href: https://yourspotify.brew.foo
         icon: your-spotify
