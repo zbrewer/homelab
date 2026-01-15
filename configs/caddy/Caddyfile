@@ -54,6 +54,7 @@ http://books,
 http://get-books,
 http://homebridge,
 http://pdf,
+http://image-compress,
 http://s {
         redir https://{host}.brew.foo{uri}
 }
@@ -394,5 +395,11 @@ http://home {
         @pdf host pdf.brew.foo
         handle @pdf {
                 reverse_proxy 10.0.10.31:8085
+        }
+
+        # Mazanoke Image Compression
+        @image-compress host image-compress.brew.foo
+        handle @image-compress {
+                reverse_proxy 10.0.10.31:3474
         }
 }
