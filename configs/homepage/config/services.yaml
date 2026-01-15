@@ -52,6 +52,10 @@
         href: https://pdf.brew.foo
         icon: sh-bentopdf-light
 
+    - Image Compression:
+        href: https://image-compress.brew.foo
+        icon: sh-mazanoke
+
     - Your Spotify:
         href: https://yourspotify.brew.foo
         icon: your-spotify
