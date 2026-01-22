@@ -55,6 +55,8 @@ http://get-books,
 http://homebridge,
 http://pdf,
 http://image-compress,
+http://convert,
+http://it-tools,
 http://s {
         redir https://{host}.brew.foo{uri}
 }
