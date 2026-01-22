@@ -409,12 +409,7 @@ http://home {
         @convert host convert.brew.foo
         handle @convert {
                 import authentik_auth
-                reverse_proxy https://10.0.10.31:3054 {
-                        transport http {
-                                tls
-                                tls_insecure_skip_verify
-                        }
-                }
+                reverse_proxy 10.0.10.31:3054
         }
 
         # IT Tools
