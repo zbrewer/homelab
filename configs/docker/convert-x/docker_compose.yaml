@@ -1,0 +1,14 @@
+services:
+  convertx:
+    image: ghcr.io/c4illin/convertx
+    container_name: convertx
+    restart: unless-stopped
+    ports:
+      - "3054:3000"
+    environment:
+      # Allows users to access the service without signing in. Sign-in will be handled by my reverse proxy instead.
+      - ALLOW_UNAUTHENTICATED=true
+      # Uses randomUUID() if unset
+      # - JWT_SECRET=aLongAndSecretStringUsedToSignTheJSONWebToken123
+    volumes:
+      - /home/zbrewer/convert-x/data:/app/data
