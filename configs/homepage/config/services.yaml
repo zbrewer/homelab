@@ -48,6 +48,10 @@
         href: https://hamclock.brew.foo
         icon: mdi-radio-tower
 
+    - ConvertX:
+        href: https://convert.brew.foo
+        icon: sh-convertx
+
     - Bento PDF:
         href: https://pdf.brew.foo
         icon: sh-bentopdf-light
@@ -55,6 +59,10 @@
     - Image Compression:
         href: https://image-compress.brew.foo
         icon: sh-mazanoke
+
+    - IT Tools:
+        href: https://it-tools.brew.foo
+        icon: sh-it-tools
 
     - Your Spotify:
         href: https://yourspotify.brew.foo
