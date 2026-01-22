@@ -420,6 +420,6 @@ http://home {
         # IT Tools
         @it-tools host it-tools.brew.foo
         handle @it-tools {
-                reverse_proxy https://10.0.10.31:8086
+                reverse_proxy https://10.0.10.31:8087
         }
 }
