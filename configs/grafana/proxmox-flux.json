@@ -101,7 +101,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -166,7 +166,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -233,7 +233,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -300,7 +300,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -376,7 +376,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -443,7 +443,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -516,7 +516,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -589,7 +589,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -682,7 +682,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -793,7 +793,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -942,7 +942,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1060,7 +1060,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1156,7 +1156,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1253,7 +1253,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1349,7 +1349,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1445,7 +1445,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1542,7 +1542,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1639,7 +1639,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1736,7 +1736,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1833,7 +1833,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -1930,7 +1930,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -2027,7 +2027,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -2124,7 +2124,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -2221,7 +2221,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -2334,7 +2334,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
@@ -2444,14 +2444,14 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "11.6.10",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "e2dbf712-0a75-47a4-9933-3f9b32bb0ea9"
           },
-          "query": "from(bucket: \"proxmox-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"exec_mget_temp\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"host\"] == \"${server}\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"proxmox-telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"exec_mget_temp\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"host\"] == \"${server}\")\n  |> filter(fn: (r) => r._value >= -100)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -2499,8 +2499,8 @@
       },
       {
         "current": {
-          "text": "helium",
-          "value": "helium"
+          "text": "hydrogen",
+          "value": "hydrogen"
         },
         "datasource": {
           "type": "influxdb",
@@ -2526,5 +2526,5 @@
   "timezone": "",
   "title": "Proxmox [Flux]",
   "uid": "c1a10a72-81a1-47f2-bfa2-d05b34b40663",
-  "version": 16
+  "version": 17
 }
