@@ -52,7 +52,6 @@ http://wavelog,
 http://yourspotify,
 http://books,
 http://get-books,
-http://homebridge,
 http://pdf,
 http://image-compress,
 http://convert,
@@ -385,12 +384,6 @@ http://home {
         handle @snapp {
                 reverse_proxy 10.0.10.31:3004
                 redir / /dashboard
-        }
-
-        # Homebridge
-        @homebridge host homebridge.brew.foo
-        handle @homebridge {
-                reverse_proxy 10.0.101.11:8581
         }
 
         # Bento PDF
