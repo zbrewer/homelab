@@ -162,7 +162,7 @@
           key: "<redacted>" # optional
 
     - TrueNAS:
-        href: https://truenas.brew.foo
+        href: https://truenas.brew.foo/ui/
         description: Primary storage server
         icon: truenas.png
         widget:
@@ -173,9 +173,10 @@
           key: "<redacted>" # not required if using username / password
           enablePools: true # optional, defaults to false
           nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+          version: 2
 
     - TrueNAS Backup:
-        href: https://truenas-backup.brew.foo
+        href: https://truenas-backup.brew.foo/ui/
         description: Backup storage server
         icon: truenas.png
         widget:
@@ -186,6 +187,7 @@
           key: "<redacted>" # not required if using username / password
           enablePools: true # optional, defaults to false
           nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+          version: 2
 
 - Management:
     - Guacamole:
