@@ -123,7 +123,6 @@ http://home {
         # Truenas
         @truenas host truenas.brew.foo
         handle @truenas {
-                redir / /ui{uri}
                 reverse_proxy https://10.0.20.10 {
                         transport http {
                                 tls
@@ -151,7 +150,6 @@ http://home {
         # Truenas backup server
         @truenas-backup host truenas-backup.brew.foo
         handle @truenas-backup {
-                redir / /admin{uri}
                 reverse_proxy https://10.0.20.11 {
                         transport http {
                                 tls
