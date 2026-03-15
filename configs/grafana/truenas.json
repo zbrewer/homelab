@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 7,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -52,7 +52,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -86,7 +87,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -113,7 +114,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -147,7 +149,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -174,7 +176,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -208,7 +211,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -235,7 +238,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -269,7 +273,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -299,7 +303,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -339,7 +344,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -365,7 +370,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -397,7 +403,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -427,7 +433,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -467,7 +474,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -519,7 +526,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -556,7 +564,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -626,6 +634,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -640,7 +649,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -674,7 +684,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "da0",
@@ -762,6 +772,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -777,7 +788,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -838,7 +850,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "ARC Hits",
@@ -920,6 +932,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -934,7 +947,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1003,7 +1017,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -1073,6 +1087,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1087,7 +1102,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1122,7 +1138,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "RX: $tag_resource",
@@ -1209,6 +1225,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1224,7 +1241,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1333,7 +1351,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -1483,6 +1501,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1497,7 +1516,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1644,7 +1664,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -1698,6 +1718,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1713,7 +1734,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -1754,7 +1776,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1773,7 +1795,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\", \"ZDHBCD6Y\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\", \"ZDHBCJEL\", \"ZDHBCKH5\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\", \"ZDHBCD6Y\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\", \"ZDHBCJEL\", \"ZDHBCKH5\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_.*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_[^_]+/, v: r._measurement))\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1854,6 +1876,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1869,7 +1892,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -1910,7 +1934,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1929,7 +1953,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"S1ATNSAD906882M\", \"S21TNXAG607043P\", \"18231CC4B59F\", \"18471F7DF9F3\"]\r\ntruenas_backup_drives = [\"BTHV701404A4200MGN\"]\r\n\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.smart_log_smart\\.disktemp\\..*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^\\.]+$/, v: r._measurement)\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"S1ATNSAD906882M\", \"S21TNXAG607043P\", \"18231CC4B59F\", \"18471F7DF9F3\"]\r\ntruenas_backup_drives = [\"BTHV701404A4200MGN\"]\r\n\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_.*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_[^_]+/, v: r._measurement))\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2010,6 +2034,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -2025,7 +2050,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2060,7 +2086,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2174,6 +2200,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -2188,7 +2215,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2222,7 +2250,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "alias": "da0",
@@ -2317,6 +2345,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2331,7 +2360,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -2371,7 +2401,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.6",
+      "pluginVersion": "12.3.5",
       "targets": [
         {
           "datasource": {
@@ -2389,7 +2419,7 @@
   ],
   "preload": false,
   "refresh": "10s",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
@@ -2537,5 +2567,5 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 172
+  "version": 174
 }
