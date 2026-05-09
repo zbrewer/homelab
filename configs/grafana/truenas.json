@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 0,
+  "id": 7,
   "links": [],
   "panels": [
     {
@@ -87,7 +87,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -149,7 +149,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -211,7 +211,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -273,7 +273,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -344,7 +344,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -403,7 +403,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -474,7 +474,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -564,7 +564,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -684,7 +684,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "da0",
@@ -850,7 +850,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "ARC Hits",
@@ -1017,7 +1017,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -1138,7 +1138,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "RX: $tag_resource",
@@ -1351,7 +1351,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -1664,7 +1664,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -1776,7 +1776,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -1795,7 +1795,7 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\", \"ZDHBCD6Y\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\", \"ZDHBCJEL\", \"ZDHBCKH5\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_.*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_[^_]+/, v: r._measurement))\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\r\nimport \"regexp\"\r\n\r\ntruenas_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"Y5KTWPUC\", \"ZDHBCD6Y\", \"ZDHBDJS1\"]\r\ntruenas_backup_drives = [\"ZX213EF4\", \"ZX20SPDB\", \"ZDHBCJEL\", \"ZDHBCKH5\"]\r\n\r\nfrom(bucket: \"${bucket}\")\r\n  |> range(start: date.sub(d: 1m, from: v.timeRangeStart), stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\r\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_.*/)\r\n  |> map(fn: (r) => ({\r\n    r with _field: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^scale\\.truenas\\.truenas_disk_temp\\._serial_lunid_[^_]+/, v: r._measurement))\r\n  }))\r\n  |> filter(fn: (r) => contains(value: r[\"_field\"], set: truenas_drives) or contains(value: r[\"_field\"], set: truenas_backup_drives))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1934,7 +1934,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2086,7 +2086,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "Temp: $tag_resource",
@@ -2250,7 +2250,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "alias": "da0",
@@ -2263,7 +2263,7 @@
           "measurement": "geom_busy_percent-da0",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"9JH158RT\"]\ntruenas_boot_pool_drives = [\"S21TNXAG607043P\", \"S1ATNSAD906882M\"]\ntruenas_backup_tank_drives = [\"ZX20SPDB\", \"ZX213EF4\"]\ntruenas_backup_boot_pool_drives = [\"BTHV701404A4200MGN\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.reads$/ or r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.writes$/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^_serial_lunid_[^_]+/, v: r._field))\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> map(fn: (r) => ({\n    r with _value:\n      if (regexp.findString(r: /[^\\.]+$/, v: r._field) == \"reads\") then -r._value\n      else r._value\n  }))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "import \"regexp\"\n\ntruenas_tank_drives = [\"9JG4DJKT\", \"9JGK57NT\", \"9JH16J8T\", \"9JG2UX4G\", \"Y5KTWPUC\"]\ntruenas_boot_pool_drives = [\"S21TNXAG607043P\", \"S1ATNSAD906882M\"]\ntruenas_backup_tank_drives = [\"ZX20SPDB\", \"ZX213EF4\"]\ntruenas_backup_boot_pool_drives = [\"BTHV701404A4200MGN\"]\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"host\"] == \"$host\")\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.reads$/ or r[\"_measurement\"] =~ /^scale\\.truenas\\.truenas_disk_stats\\._serial_lunid_[^\\.]+\\.writes$/)\n  |> map(fn: (r) => ({\n    r with _field: regexp.findString(r: /[^\\.]+\\.[^\\.]+$/, v: r._measurement)\n  }))\n  |> map(fn: (r) => ({\n    r with _drive: regexp.findString(r: /[^_]+$/, v: regexp.findString(r: /^_serial_lunid_[^_]+/, v: r._field))\n  }))\n  |> filter(fn: (r) =>\n    (\"$host\" == \"truenas\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_tank_drives))\n    or (\"$host\" == \"truenas\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_boot_pool_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"tank\" and contains(value: r[\"_drive\"], set: truenas_backup_tank_drives))\n    or (\"$host\" == \"truenas-backup\" and \"$pool\" == \"boot-pool\" and contains(value: r[\"_drive\"], set: truenas_backup_boot_pool_drives)))\n  |> map(fn: (r) => ({\n    r with _value:\n      if (regexp.findString(r: /[^\\.]+$/, v: r._field) == \"reads\") then -r._value\n      else r._value\n  }))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2401,7 +2401,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.5",
+      "pluginVersion": "12.3.6",
       "targets": [
         {
           "datasource": {
@@ -2469,8 +2469,8 @@
       },
       {
         "current": {
-          "text": "truenas-backup",
-          "value": "truenas-backup"
+          "text": "truenas",
+          "value": "truenas"
         },
         "datasource": {
           "type": "influxdb",
@@ -2490,8 +2490,8 @@
       },
       {
         "current": {
-          "text": "br_c1e87e169875",
-          "value": "br_c1e87e169875"
+          "text": "eno3",
+          "value": "eno3"
         },
         "datasource": {
           "type": "influxdb",
@@ -2567,5 +2567,5 @@
   "timezone": "",
   "title": "Truenas",
   "uid": "3Qek6Q5Wz",
-  "version": 174
+  "version": 176
 }
