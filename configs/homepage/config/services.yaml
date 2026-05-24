@@ -231,6 +231,7 @@
           type: authentik
           url: https://authentik.brew.foo
           key: "<redacted>"
+          version: 2
 
     - Eaton UPS:
         href: https://eaton.brew.foo
