@@ -40,6 +40,10 @@
         href: https://wiki.brew.foo
         icon: wikijs.png
 
+    - Redlib:
+        href: https://reddit.brew.foo
+        icon: sh-redlib
+
     - Wavelog:
         href: https://wavelog.brew.foo
         icon: /icons/wavelog_logo_darkly.png
