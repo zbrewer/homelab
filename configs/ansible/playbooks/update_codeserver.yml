@@ -11,5 +11,5 @@
   - name: Reload Codeserver
     ansible.builtin.systemd:
       daemon_reload: yes
-      name: code-server@{{ ansible_env.USER }}
+      name: code-server@{{ ansible_facts.env.USER }}
       state: restarted
